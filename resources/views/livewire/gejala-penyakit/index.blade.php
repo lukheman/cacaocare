@@ -33,7 +33,9 @@
                                 <td>{{ $item->nama }}</td>
                                 <td class="d-flex justify-content-end">
                                     <button wire:click="show({{ $item->id }})" class="btn me-2  btn-primary" type="button">Lihat Gejala</button>
-                                    <button wire:click="edit({{ $item->id }})" class="btn btn-warning" type="button">Edit Gejala</button>
+
+                                    <button wire:show="showEditButton" wire:click="edit({{ $item->id }})" class="btn btn-warning" type="button">Edit Gejala</button>
+
                                 </td>
                             </tr>
 

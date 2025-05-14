@@ -2,6 +2,7 @@
 
     <div class="col-12">
 
+
         <div class="card">
 
             <div class="card-header">
@@ -11,15 +12,28 @@
             <div class="card-body">
 
 
-                <div class="card">
+
+
+                <div class="row d-flex justify-content-center">
+                    <div class="col-8">
+
+                <div class="card" wire:show="!visible">
                     <div class="card-header">
-                        <p class="text-center"><b>Pilih Gejala</b></p>
+                        <h5 class="text-center"><b>Hasil Diagnosis</b></h5>
                     </div>
                     <div class="card-body">
-                        <form action="">
+                        <livewire:hasil-diagnosis></livewire:hasil-diagnosis>
+                    </div>
 
-                            <div class="row d-flex justify-content-center">
-                                <div class="col-8">
+                </div>
+
+                        <div class="card" wire:show="visible">
+                            <div class="card-header">
+                                <h5 class="text-center"><b>Pilih Gejala</b></h5>
+                            </div>
+                            <div class="card-body">
+                                <form action="">
+
 
                                     @foreach ($gejala as $item)
                                     <div class="form-group">
@@ -32,21 +46,22 @@
                                     </div>
                                     @endforeach
 
-                                </div>
+
+                                    <div class="row mt-5">
+                                        <div class="col-12">
+
+                                            <button wire:click="start" class="btn btn-primary" type="button">Diagnosis</button>
+
+                                        </div>
+                                    </div>
+
+                                </form>
+
                             </div>
-
-                            <div class="row">
-                                <div class="col-12 d-flex justify-content-end">
-
-                                    <button wire:click="start" class="btn btn-primary" type="button">Diagnosis</button>
-
-                                </div>
-                            </div>
-
-                        </form>
-
+                        </div>
                     </div>
                 </div>
+
 
 
 

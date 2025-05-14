@@ -7,11 +7,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Rule;
 use Livewire\Form;
-use App\Enum\Role;
+use App\Enums\Role;
 
 class LoginForm extends Form
 {
-    #[Rule(['required', 'email'])]
+    #[Rule(['required', 'email', 'exists:users,email'])]
     public string $email = '';
 
     #[Rule(['required'])]
@@ -22,11 +22,11 @@ class LoginForm extends Form
 
         if(Auth::attempt($this->validate())) {
 
-            if(Role::from(Auth::user()->role) === Role::ADMIN) {
+            if(Role::from(Auth::user()->role) === Role::Admin) {
                 return redirect()->route('admin.dashboard');
 
-            } else if (Role::from(Auth::user()->role) === Role::USER) {
-                return redirect()->route('user.dashboard');
+            } else if (Role::from(Auth::user()->role) === Role::Pasien) {
+                return redirect()->route('pasien.dashboard');
             }
 
             throw ValidationException::withMessages([
@@ -36,9 +36,11 @@ class LoginForm extends Form
 
         }
 
-        throw ValidationException::withMessages([
-            'email' => 'email tidak terdaftar'
-        ]);
+        flash('Email tidak terdaftar atau password tidak valid', 'danger');
+
+        /* throw ValidationException::withMessages([ */
+        /*     'messages' => 'Email tidak terdaftar atau ' */
+        /* ]); */
 
     }
 

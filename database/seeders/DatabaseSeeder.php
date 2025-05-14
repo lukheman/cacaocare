@@ -7,6 +7,7 @@ use App\Models\Penyakit;
 use App\Models\Gejala;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Enums\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,14 +21,14 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Akmal admin',
             'email' => 'admin@gmail.com',
-            'role' => 'admin',
+            'role' => Role::Admin,
             'password' => bcrypt('asdf')
         ]);
 
         User::factory()->create([
             'name' => 'Citra Wulandari',
             'email' => 'citra@gmail.com',
-            'role' => 'user',
+            'role' => Role::Pasien,
             'password' => bcrypt('asdf')
         ]);
 

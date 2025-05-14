@@ -13,22 +13,50 @@ class DempsterShafer {
 
 
     public function plausibility() {
-        $set = [];
-        $plausibility = 1;
+
+        $keys = [];
+        $plausibility = 1.0;
+
+
+        // konflik akan dijumlahkan dengan plausibility, oleh karena itu tidak usah kurang 1 dengan set yang konflik
+        $this->filterConflict();
 
         foreach($this->matrix as $row) {
             foreach($row as $key => $value) {
-                array_push($set, $key);
-                $plausibility -= $value;
+                if($key !== '') {
+                    $keys[] = $key;
+                    $plausibility -= $value;
+                }
             }
         }
 
+        $keys = $this->unionArrays($keys);
 
-        $key = $this->unionArrays($set);
-
-        return [$key => round($plausibility, 6)];
+        return [$keys => round($plausibility, 6)];
 
 
+    }
+
+    public function totalBelief() {
+        // fungsi untuk mendapatkan total belief dengan menjumlahkan nilii belief setiap set
+        $belief = 0.0;
+
+        foreach($this->matrix as $row) {
+            foreach($row as $key => $value) {
+                $belief += $value;
+            }
+
+        }
+
+        return $belief;
+
+    }
+
+    public function filterConflict() {
+        $this->matrix = array_filter($this->matrix, function ($item) {
+            $key = array_key_first($item);
+            return !empty($key); // hanya ambil yang key-nya tidak kosong
+        });
     }
 
 
@@ -101,8 +129,6 @@ class DempsterShafer {
     }
 
 
-
-
     private function unionArrays($array) {
         $all = [];
         foreach ($array as $item) {
@@ -117,6 +143,26 @@ class DempsterShafer {
         $intersect = array_intersect($arrA, $arrB);
         sort($intersect); // opsional: untuk urutan rapi
         return implode(',', $intersect);
+
+    }
+
+    public function getMaxValue() {
+
+        $maxValue = 0;
+        $maxKey = '';
+
+
+        foreach($this->matrix as $row) {
+
+            foreach($row as $key => $value) {
+                if($value > $maxValue) {
+                    $maxValue = $value;
+                    $maxKey = $key;
+                }
+            }
+        }
+
+        return [$maxKey => $maxValue];
 
     }
 

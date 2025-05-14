@@ -11,6 +11,8 @@ class Index extends Component
     public $state = '';
     public $id_penyakit;
 
+    public bool $showEditButton = true;
+
     public function show($id) {
         $this->state = 'show';
         $this->id_penyakit = $id;
