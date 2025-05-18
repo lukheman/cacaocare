@@ -1,5 +1,5 @@
 <div class="row min-vh-100 justify-content-center align-items-center">
-    <div class="col-md-3">
+    <div class="col-md-4">
 
         <div class="card">
             <div class="card-header">
@@ -22,10 +22,8 @@
                     <form class="form form-horizontal" wire:submit="login">
                         <div class="form-body">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-12 form-group">
                                     <label for="email-horizontal">Email</label>
-                                </div>
-                                <div class="col-md-8 form-group">
                                     <input wire:model="form.email" type="email" id="email-horizontal" class="form-control" name="email" placeholder="Email">
                                     @error('email')
 
@@ -33,11 +31,8 @@
 
                                     @enderror
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-12 form-group">
                                     <label for="password-horizontal">Password</label>
-
-                                </div>
-                                <div class="col-md-8 form-group">
                                     <input wire:model="form.password" type="password" id="password-horizontal" class="form-control" name="password" placeholder="Password">
 
                                     @error('password')
