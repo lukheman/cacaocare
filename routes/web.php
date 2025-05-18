@@ -24,7 +24,8 @@ Route::prefix('laporan')->controller(\App\Http\Controllers\LaporanController::cl
 
 });
 
-Route::prefix('pasien')->middleware('auth')->group(function() {
-    Route::get('/dashboard', \App\Livewire\Pasien\Dashboard::class)->name('pasien.dashboard');
-    Route::get('/diagnosis', \App\Livewire\Diagnosis::class)->name('pasien.diagnosis');
-});
+Route::get('/diagnosis', \App\Livewire\Diagnosis::class)->name('diagnosis');
+
+/* Route::prefix('pasien')->middleware('auth')->group(function() { */
+/*     Route::get('/dashboard', \App\Livewire\Pasien\Dashboard::class)->name('pasien.dashboard'); */
+/* }); */

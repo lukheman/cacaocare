@@ -5,9 +5,11 @@ namespace App\Livewire;
 use App\Helpers\DempsterShafer;
 use App\Models\Gejala;
 use App\Models\Penyakit;
+use Livewire\Attributes\Layout;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
+#[Layout('layouts.guest')]
 class Diagnosis extends Component
 {
 

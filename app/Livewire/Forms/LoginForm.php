@@ -25,9 +25,10 @@ class LoginForm extends Form
             if(Role::from(Auth::user()->role) === Role::Admin) {
                 return redirect()->route('admin.dashboard');
 
-            } else if (Role::from(Auth::user()->role) === Role::Pasien) {
-                return redirect()->route('pasien.dashboard');
             }
+            /* } else if (Role::from(Auth::user()->role) === Role::Pasien) { */
+            /*     return redirect()->route('pasien.dashboard'); */
+            /* } */
 
             throw ValidationException::withMessages([
                 'role' => 'role tidak ada'

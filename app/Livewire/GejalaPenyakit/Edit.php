@@ -13,7 +13,6 @@ class Edit extends Component
 
     public $gejala_penyakit_all;
     public string $nama_penyakit = '';
-
     public $id_gejala_terpilih = []; // untuk menyimpan gejala terpilih
     public $gejala_penyakit;
 
