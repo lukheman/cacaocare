@@ -20,7 +20,41 @@
 
 
         <div id="app">
+
+            <div class="container">
+
+            <nav class="navbar fixed-top navbar-expand-lg bg-white container">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Silambung</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="{{ route('landing')}}">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#daftar-penyakit">Daftar Penyakit</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('diagnosis') }}">Diagnosis</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="ms-4 btn btn-primary" href="{{ route('login')}}">Login</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            </div>
+
+
+
+            <div class="container mt-5" style="padding-top: 80px;">
+
             {{ $slot }}
+            </div>
         </div>
 
 
@@ -42,7 +76,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         // Sembunyikan semua card di awal
         gsap.set('.card-item', {opacity: 0, y: 50});
-        
+
         // Animasikan card satu per satu
         gsap.to('.card-item', {
             opacity: 1,
