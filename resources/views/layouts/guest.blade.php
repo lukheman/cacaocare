@@ -41,7 +41,11 @@
                                 <a class="nav-link" href="{{ route('diagnosis') }}">Diagnosis</a>
                             </li>
                             <li class="nav-item">
-                                <a class="ms-4 btn btn-primary" href="{{ route('login')}}">Login</a>
+                                    @auth
+                                        <a class="ms-4 btn btn-primary" href="{{ route('admin.dashboard')}}">Dashboard</a>
+                                    @else
+                                        <a class="ms-4 btn btn-primary" href="{{ route('login')}}">Login</a>
+                                    @endauth
                             </li>
                         </ul>
                     </div>

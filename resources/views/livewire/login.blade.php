@@ -15,8 +15,6 @@
 
                 <div class="card-body">
 
-                <p class="text-center">Belum punya akun, silahkan <a href="{{ route('registrasi')}}">registrasi</a></p>
-
                         <x-flash-message />
 
                     <form class="form form-horizontal" wire:submit="login">
