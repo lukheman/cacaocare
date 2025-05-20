@@ -25,31 +25,6 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('asdf')
         ]);
 
-        User::factory()->create([
-            'name' => 'Citra Wulandari',
-            'email' => 'citra@gmail.com',
-            'role' => Role::Pasien,
-            'password' => bcrypt('asdf')
-        ]);
-
-        $this->call([
-            PenyakitSeeder::class,
-            GejalaSeeder::class
-        ]);
-
-
-        // Sync gejala ke penyakit
-        $penyakit = Penyakit::find(1);
-        $penyakit->gejala()->attach(1);
-        $penyakit->gejala()->attach(2);
-        $penyakit->gejala()->attach(3);
-
-        $penyakit = Penyakit::find(2);
-        $penyakit->gejala()->attach(1, ['bobot' => 0.3]);
-        $penyakit->gejala()->attach(2);
-        $penyakit->gejala()->attach(3, ['bobot' => 0.1]);
-        $penyakit->gejala()->attach(10);
-
 
     }
 }
