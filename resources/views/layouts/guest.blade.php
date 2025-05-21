@@ -32,7 +32,7 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="nav ms-auto">
                             <li class="nav-item">
-                                <a class="nav-link active" href="{{ route('landing')}}">Home</a>
+                                <a class="nav-link active" href="{{ route('landing')}}">Beranda</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#daftar-penyakit">Daftar Penyakit</a>
@@ -44,7 +44,7 @@
                                     @auth
                                         <a class="ms-4 btn btn-primary" href="{{ route('admin.dashboard')}}">Dashboard</a>
                                     @else
-                                        <a class="ms-4 btn btn-primary" href="{{ route('login')}}">Login</a>
+                                        <a class="ms-4 btn btn-primary" href="{{ route('login')}}">Masuk</a>
                                     @endauth
                             </li>
                         </ul>

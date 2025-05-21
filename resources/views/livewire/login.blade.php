@@ -8,7 +8,7 @@
                         <h4 class="card-title">{{ config('app.name')}}</h4>
                     </div>
                     <div class="col-6 d-flex justify-content-end">
-                        <h4 class="card-title">Login</h4>
+                        <h4 class="card-title">Masuk</h4>
                     </div>
                 </div>
             </div>
@@ -43,8 +43,7 @@
 
                                 <div class="col-sm-12 d-flex justify-content-end">
 
-                                    <a  href="{{ route('landing')}}" class="btn btn-success me-1 mb-1">Home</a>
-                                    <button type="submit" class="btn btn-primary me-1 mb-1">Login</button>
+                                    <button type="submit" class="btn btn-primary me-1 mb-1">Masuk</button>
                                 </div>
                             </div>
                         </div>
