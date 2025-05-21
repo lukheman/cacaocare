@@ -5,7 +5,7 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-6">
-                        <h4 class="card-title">{{ config('app.name')}}</h4>
+                        <h4 class="card-title">SiLambung</h4>
                     </div>
                     <div class="col-6 d-flex justify-content-end">
                         <h4 class="card-title">Masuk</h4>
