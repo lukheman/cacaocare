@@ -12,7 +12,7 @@
                     </div>
                     <div class="col-6 d-flex justify-content-end">
 
-                        <button wire:click="create" class="btn btn-primary me-3">Tambah Gejala</button>
+                        <button wire:click="create" class="btn btn-primary me-3">Tambah Penyakit</button>
 
                     </div>
                 </div>

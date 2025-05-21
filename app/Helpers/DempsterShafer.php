@@ -93,13 +93,6 @@ class DempsterShafer {
 
         }
 
-        // kali plausibility
-        /* $set1 = array_key_first($this->plausibility()); */
-        /* $set2 = array_key_first($other->plausibility()); */
-        /* $new_belief = array_values($this->plausibility())[0] * array_values($other->plausibility())[0]; */
-        /* $key = unionArrays([$set1, $set2]); */
-        /* array_push($result, [$key => $new_belief ]); */
-
         $result = $this->normalisasi($result);
 
         return new DempsterShafer($result);
