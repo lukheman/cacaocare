@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laporan Barang Masuk</title>
+    <title>Laporan Gejala Penyakit</title>
 
 
     <!-- TODO: buat perhari -->
