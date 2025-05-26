@@ -59,14 +59,21 @@ class DempsterShafer {
         });
     }
 
+    /* contoh */
+    /* ['P3', 'P1', 'P2'] -> ['P1', 'P2', 'P3'] */
+    private function sortingKey($key) {
+        $keys = explode(',', $key);
+        sort($keys);
+        return implode(',', $keys);
+    }
 
     public function combinate(DempsterShafer $other): DempsterShafer {
         $result = [];
 
         /* this M x other belif */
         foreach($this->matrix as $row) {
-            $set1 = array_key_first($row);
-            $set2 = array_key_first($other->matrix[0]);
+            $set1 = $this->sortingKey(array_key_first($row));
+            $set2 = $this->sortingKey(array_key_first($other->matrix[0]));
             $new_belief = array_values($row)[0] * array_values($other->matrix[0])[0];
 
             $key = $this->intersect($set1, $set2);
@@ -75,8 +82,8 @@ class DempsterShafer {
         }
 
         // kali plausibility
-        $set1 = array_key_first($this->plausibility());
-        /* $set2 = array_key_first($other->matrix[0]); */
+        $set1 = $this->sortingKey(array_key_first($this->plausibility()));
+        $set2 = $this->sortingKey(array_key_first($other->matrix[0]));
         $new_belief = array_values($this->plausibility())[0] * array_values($other->matrix[0])[0];
         $key = $this->intersect($set1, $set2);
         array_push($result, [$set2 => $new_belief ]);
@@ -127,7 +134,10 @@ class DempsterShafer {
         foreach ($array as $item) {
             $all = array_merge($all, explode(',', $item));
         }
-        return implode(',', array_values(array_unique($all)));
+
+        $unique = array_unique($all);
+        sort($unique);
+        return implode(',', $unique);
     }
 
     private function intersect(string $a, string $b): string {
