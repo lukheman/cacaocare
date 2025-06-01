@@ -11,9 +11,34 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zuramai/mazer@docs/demo/assets/compiled/css/app.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zuramai/mazer@docs/demo/assets/compiled/css/app-dark.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zuramai/mazer@docs/demo/assets/compiled/css/iconly.css">
+        <link rel="stylesheet" href="{{ asset('css/guest.css') }}">
 
          <!-- Script GSAP -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+        <style>
+
+
+        body {
+            content: '';
+            position: absolute;
+            inset: 0;
+
+            @if (request()->routeIs('diagnosis'))
+                background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url("{{ asset('asset/img/diagnosis-background.jpeg') }}");
+            @else
+                background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url("{{ asset('asset/img/landing-background.jpeg') }}");
+
+            @endif
+
+            background-size: cover; /* Menutupi seluruh area */
+            background-position: center; /* Posisi gambar di tengah */
+            background-repeat: no-repeat; /* Tidak mengulang gambar */
+            background-attachment: fixed; /* Gambar tetap saat scroll */
+            opacity: 0.9; /* atur tingkat transparansi */
+            z-index: -1;
+        }
+        </style>
     </head>
 
     <body>
@@ -23,22 +48,22 @@
 
             <div class="container">
 
-            <nav class="navbar fixed-top navbar-expand-lg bg-white container">
+            <nav class="navbar navbar-expand-lg container">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#">SiLambung</a>
+                    <a class="navbar-brand text-white" href="#">SiLambung</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="nav ms-auto">
                             <li class="nav-item">
-                                <a class="nav-link active" href="{{ route('landing')}}">Beranda</a>
+                                <a class="nav-link text-white" href="{{ route('landing')}}">Beranda</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#daftar-penyakit">Daftar Penyakit</a>
+                                <a class="nav-link text-white" href="#daftar-penyakit">Daftar Penyakit</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('diagnosis') }}">Diagnosis</a>
+                                <a class="nav-link text-white" href="{{ route('diagnosis') }}">Diagnosis</a>
                             </li>
                             <li class="nav-item">
                                     @auth
