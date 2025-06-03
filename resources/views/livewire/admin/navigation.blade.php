@@ -26,11 +26,13 @@
         :href="route('admin.diagnosis')">
         Diagnosis
     </x-sidebar-item>
+
+    <li class="sidebar-title">Laporan</li>
     <x-sidebar-item
         icon="fa-file-medical"
-        :active="request()->routeIs('admin.laporan-gejala-penyakit')"
-        :href="route('admin.laporan-gejala-penyakit')">
-        Laporan Gejala Penyakit
+        :active="request()->routeIs('admin.laporan-diagnosis-pasien')"
+        :href="route('admin.laporan-diagnosis-pasien')">
+        Laporan Diagnosis Pasien
     </x-sidebar-item>
 
 </div>
