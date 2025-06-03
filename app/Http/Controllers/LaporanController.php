@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DetailLogDiagnosis;
 use App\Models\LogDiagnosis;
 use App\Models\Penyakit;
 use Illuminate\Http\Request;
@@ -38,10 +39,10 @@ class LaporanController extends Controller
             'id_log_diagnosis' => ['required', 'exists:log_diagnosis,id']
         ]);
 
-        $diagnosis = LogDiagnosis::with('penyakit')->find($validated['id_log_diagnosis']);
+        $diagnosis = LogDiagnosis::with(['penyakit', 'details.gejala'])->find($validated['id_log_diagnosis']);
 
         return view('laporan.laporan-diagnosis-satu-pasien', [
-            'diagnosis' => $diagnosis
+            'diagnosis' => $diagnosis,
         ]);
 
 
