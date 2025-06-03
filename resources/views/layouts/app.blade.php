@@ -21,7 +21,7 @@
 
         <div id="app">
             <!-- Sidebar -->
-            <div id="sidebar" class="active">
+            <div id="sidebar">
                 <div class="sidebar-wrapper active ps ps--active-y">
 
                     <div class="sidebar-header position-relative">
@@ -100,9 +100,8 @@
 
         <script src="https://cdn.jsdelivr.net/gh/zuramai/mazer@docs/demo/assets/compiled/js/app.js"></script>
 
-        <!-- Need: Apexcharts -->
-        <script src="https://cdn.jsdelivr.net/gh/zuramai/mazer@docs/demo/assets/extensions/apexcharts/apexcharts.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/zuramai/mazer@docs/demo/assets/static/js/pages/dashboard.js"></script>
+        <!-- chart js -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
         <script>
             document.addEventListener('livewire:initialized', () => {
@@ -131,6 +130,8 @@
 
             });
         </script>
+
+        @stack('scripts')
     </body>
 
 </html>
