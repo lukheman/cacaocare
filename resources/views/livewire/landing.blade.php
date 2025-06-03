@@ -1,23 +1,14 @@
-<div class="row">
+<div class="row vh-100 justify-content-center">
 
-    <div class="col-12 d-flex vh-100 justify-content-start" style="padding-top: 8rem;">
-        <div class="row">
-            <div class="col-md-6">
+    <div class="col-8 text-center text-white" style="padding-top: 8rem;">
 
-                <h1>Selamat Datang</h1>
+                <h1 class="text-white">Selamat Datang</h1>
                 <p>Sistem Pakar penyakti lambung adalah sebuah sistem berbasis komputer yang dirancang untuk meniru
                     proses berpikir seorang pakar (dokter atau spesialis gastroenterologi) dalam mendiagnosis dan
                     memberikan saran pengobatan untuk berbagai gangguan atau penyakit yang berhubungan dengan lambung
                 </p>
 
-                <a href="{{ route('diagnosis')}}" class="btn btn-outline-primary">Mulai Konsultasi</a>
-            </div>
-            <div class="col-md-6">
-
-                <img src="{{ asset('asset/img/madicine.svg')}}" alt="" width="450" style="margin-left: 60px;">
-
-            </div>
-        </div>
+                <a href="{{ route('diagnosis')}}" class="btn btn-primary">Mulai Konsultasi</a>
     </div>
 
     <div class="col-12 vh-100 mt-5 " id="daftar-penyakit" style="padding-top: 200px">
