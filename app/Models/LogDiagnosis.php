@@ -14,6 +14,10 @@ class LogDiagnosis extends Model
         return $this->belongsTo(Penyakit::class, 'id_penyakit');
     }
 
+    public function details() {
+        return $this->hasMany(DetailLogDiagnosis::class);
+    }
+
     public static function simpan($nama, $umur, $id_penyakit, $belief) {
         self::create([
             'nama' => $nama,
