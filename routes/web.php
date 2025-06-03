@@ -13,18 +13,21 @@ Route::prefix('admin')->middleware('auth')->group(function() {
     Route::get('/penyakit', \App\Livewire\Admin\Penyakit\Index::class)->name('admin.penyakit.index');
     Route::get('/gejala', \App\Livewire\Gejala\Index::class)->name('admin.gejala.index');
     Route::get('/rule', \App\Livewire\Rule\Index::class)->name('admin.rule.index');
-    Route::get('/diagnosis', \App\Livewire\Diagnosis::class)->name('admin.diagnosis');
+    Route::get('/diagnosis', \App\Livewire\Diagnosis\InfoPasien::class)->name('admin.diagnosis');
     Route::get('/gejala-penyakit', \App\Livewire\GejalaPenyakit\Index::class)->name('admin.gejala-penyakit.index');
     Route::get('/laporan-gejala-penyakit', \App\Livewire\Admin\LaporanGejalaPenyakit::class)->name('admin.laporan-gejala-penyakit');
+    Route::get('/laporan-diagnosis-pasien', \App\Livewire\Admin\LaporanDiagnosisPasien::class)->name('admin.laporan-diagnosis-pasien');
 });
 
 Route::prefix('laporan')->controller(\App\Http\Controllers\LaporanController::class)->group(function() {
 
     Route::post('/laporan-gejala-penyakit', 'gejalaPenyakit')->name('laporan-gejala-penyakit');
+    Route::get('/laporan-dignosis-pasien', 'diagnosisPasien')->name('laporan-diagnosis-pasien');
+    Route::post('/laporan-dignosis-satu-pasien', 'diagnosisSatuPasien')->name('laporan-diagnosis-satu-pasien');
 
 });
 
-Route::get('/diagnosis', \App\Livewire\Diagnosis::class)->name('diagnosis');
+Route::get('/diagnosis', \App\Livewire\Diagnosis\Flow::class)->name('diagnosis');
 
 /* Route::prefix('pasien')->middleware('auth')->group(function() { */
 /*     Route::get('/dashboard', \App\Livewire\Pasien\Dashboard::class)->name('pasien.dashboard'); */
