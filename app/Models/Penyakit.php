@@ -15,4 +15,8 @@ class Penyakit extends Model
             /* ->withPivot('bobot'); */
     }
 
+    public function logDiagnosis() {
+        return $this->hasMany(LogDiagnosis::class, 'id_penyakit');
+    }
+
 }
