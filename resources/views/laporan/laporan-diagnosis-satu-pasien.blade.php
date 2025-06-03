@@ -102,9 +102,22 @@
                 <td>Deskripsi Penyakit</td>
                 <td>: {{ $diagnosis->penyakit->deskripsi }}</td>
             </tr>
+
+            <tr>
+                <td valign="top">Gejala yang dirasakan</td>
+                <td valign="top">:
+                    <ul>
+                    @foreach ($diagnosis->details as $item)
+                        <li>{{ $item->gejala->nama}}</li>
+
+                    @endforeach
+                    </ul>
+
+                </td>
+            </tr>
             <tr>
                 <td>Nilai Keyakinan (Belief)</td>
-                <td>: {{ number_format($diagnosis->belief, 2) }}</td>
+                <td>: {{ number_format($diagnosis->belief, 2) }}%</td>
             </tr>
         </table>
 
