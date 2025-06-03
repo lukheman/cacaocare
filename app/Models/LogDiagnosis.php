@@ -15,11 +15,11 @@ class LogDiagnosis extends Model
     }
 
     public function details() {
-        return $this->hasMany(DetailLogDiagnosis::class);
+        return $this->hasMany(DetailLogDiagnosis::class, 'id_log_diagnosis');
     }
 
     public static function simpan($nama, $umur, $id_penyakit, $belief) {
-        self::create([
+        return self::create([
             'nama' => $nama,
             'umur' => $umur,
             'id_penyakit' => $id_penyakit,

@@ -12,7 +12,7 @@ class DetailLogDiagnosis extends Model
     protected $guarded = [];
 
     public function logDiagnosis() {
-        return $this->belongsTo(LogDiagnosis::class);
+        return $this->belongsTo(LogDiagnosis::class, 'id_log_diagnosis');
     }
 
     public function gejala(): HasOne {
