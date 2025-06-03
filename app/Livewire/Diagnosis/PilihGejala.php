@@ -65,7 +65,13 @@ class PilihGejala extends Component
 
         foreach($this->kode_penyakit as $kode) {
             $id_penyakit = Penyakit::query()->where('kode', $kode)->first()->id;
-            LogDiagnosis::simpan($nama, $umur, $id_penyakit, $this->belief);
+            $log_diagnosis = LogDiagnosis::simpan($nama, $umur, $id_penyakit, $this->belief);
+
+            foreach ($this->id_gejala_terpilih as $id_gejala) {
+                $log_diagnosis->details()->create([
+                    'id_gejala' => $id_gejala
+                ]);
+            }
         }
     }
 
