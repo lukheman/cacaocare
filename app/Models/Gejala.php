@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Gejala extends Model
 {
@@ -12,6 +13,10 @@ class Gejala extends Model
     public function penyakit() {
         return $this->belongsToMany(Penyakit::class, 'gejala_penyakit', 'id_gejala', 'id_penyakit');
             /* ->withPivot('bobot'); */
+    }
+
+    public function detailLogDiagnosis(): HasOne {
+        return $this->hasOne(Gejala::class, 'id_gejala');
     }
 
 }

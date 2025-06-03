@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class DetailLogDiagnosis extends Model
@@ -15,8 +16,8 @@ class DetailLogDiagnosis extends Model
         return $this->belongsTo(LogDiagnosis::class, 'id_log_diagnosis');
     }
 
-    public function gejala(): HasOne {
-        return $this->hasOne(Gejala::class);
+    public function gejala(): BelongsTo {
+        return $this->belongsTo(Gejala::class, 'id_gejala');
     }
 
 }
