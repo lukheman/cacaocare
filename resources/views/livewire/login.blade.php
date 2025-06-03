@@ -1,5 +1,5 @@
-<div class="row min-vh-100 justify-content-center align-items-center">
-    <div class="col-md-4">
+<div class="row justify-content-center align-items-center">
+    <div class="col-lg-4 col-md-6">
 
         <div class="card">
             <div class="card-header">
