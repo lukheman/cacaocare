@@ -169,4 +169,79 @@ class DempsterShafer {
 
     }
 
+    /**
+     * Menghitung jumlah nilai belief untuk setiap kode penyakit berdasarkan gejala.
+     *
+     * Melakukan iterasi pada setiap entri dalam matrix, memisahkan kode penyakit yang digabung,
+     * lalu menjumlahkan nilai belief untuk setiap kode penyakit secara individual.
+     * Hasil akhirnya dibulatkan hingga 4 desimal dan diproses lebih lanjut oleh maxBeliefGejala().
+     *
+     * @return mixed Hasil dari pemrosesan maxBeliefGejala dengan input array belief per kode penyakit.
+     */
+    public function sumBeliefByGejala()
+    {
+        $result = [];
+
+        // Iterasi melalui setiap entri di matrix
+        foreach ($this->matrix as $entry) {
+            foreach ($entry as $diseases => $belief) {
+                // Pisahkan kode penyakit (contoh: P01,P02,P03 menjadi array [P01, P02, P03])
+                $diseaseCodes = explode(',', $diseases);
+
+                // Tambahkan nilai belief ke setiap kode penyakit
+                foreach ($diseaseCodes as $code) {
+                    $code = trim($code);
+                    if (!isset($result[$code])) {
+                        $result[$code] = 0;
+                    }
+                    $result[$code] += $belief;
+                }
+            }
+        }
+
+        // Format hasil dengan 4 desimal
+        foreach ($result as $code => $value) {
+            $result[$code] = round($value, 4);
+        }
+
+        return $this->maxBeliefGejala($result);
+
+    }
+
+
+
+    /**
+     * Mengambil elemen dengan nilai terbesar dari array gejala.
+     *
+     * @param array $array Array asosiatif gejala dengan nilai belief.
+     *                     Contoh:
+     *                     [
+     *                         "P01" => 0.476,
+     *                         "P02" => 0.416,
+     *                         "P03" => 0.736,
+     *                         "P04" => 0.376,
+     *                         "P05" => 0.626,
+     *                         "P06" => 0.352,
+     *                         "P07" => 0.352
+     *                     ]
+     * @return array Array asosiatif dengan satu elemen (key dan value terbesar).
+     *               Contoh: ["P03" => 0.736]
+     */
+    private function maxBeliefGejala(array $array) {
+        $max_key = null;
+        $max_value = null;
+
+        foreach ($array as $key => $value) {
+            if ($max_value === null || $value > $max_value) {
+                    $max_value = $value;
+                    $max_key = $key;
+                }
+        }
+
+        return [$max_key => $max_value];
+
+
+    }
+
+
 }
