@@ -95,7 +95,7 @@ class DempsterShafer {
             $set2 = array_key_first($other->plausibility());
             $new_belief = array_values($row)[0] * array_values($other->plausibility())[0];
 
-            $key = $set1;
+            $key = $this->sortingKey($set1);
             array_push($result, [$key => $new_belief ]);
 
         }
@@ -135,17 +135,18 @@ class DempsterShafer {
             $all = array_merge($all, explode(',', $item));
         }
 
+
         $unique = array_unique($all);
-        sort($unique);
-        return implode(',', $unique);
+
+        return $this->sortingKey(implode(',', $unique));
     }
 
     private function intersect(string $a, string $b): string {
         $arrA = explode(',', $a);
         $arrB = explode(',', $b);
         $intersect = array_intersect($arrA, $arrB);
-        sort($intersect); // opsional: untuk urutan rapi
-        return implode(',', $intersect);
+
+        return $this->sortingKey(implode(',', $intersect));
 
     }
 
