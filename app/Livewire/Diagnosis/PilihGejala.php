@@ -46,7 +46,7 @@ class PilihGejala extends Component
 
         $hasil->filterConflict();
 
-        $max_value = $hasil->getMaxValue();
+        $max_value = $hasil->sumBeliefByGejala();
 
         $this->kode_penyakit = explode(',', array_key_first($max_value));
         $this->belief = round(array_values($max_value)[0] * 100, 2);
