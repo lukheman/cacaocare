@@ -1,6 +1,6 @@
-<div class="row vh-100 justify-content-center">
+<div class="row  justify-content-center align-items-center vh-100">
 
-    <div class="col-8 text-center text-white" style="padding-top: 8rem;">
+    <div class="col-8 text-center text-white">
 
                 <h1 class="text-white">Selamat Datang</h1>
                 <p>Sistem Pakar penyakti lambung adalah sebuah sistem berbasis komputer yang dirancang untuk meniru

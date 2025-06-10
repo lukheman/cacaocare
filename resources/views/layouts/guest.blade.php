@@ -82,7 +82,7 @@
 
 
 
-            <div class="container mt-5" style="padding-top: 80px;">
+            <div class="container" style="padding-top: 80px;">
 
             {{ $slot }}
             </div>
