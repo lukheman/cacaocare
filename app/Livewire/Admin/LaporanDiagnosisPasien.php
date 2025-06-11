@@ -10,6 +10,10 @@ class LaporanDiagnosisPasien extends Component
 {
     use WithPagination;
 
+    public function delete($id) {
+        LogDiagnosis::query()->find($id)->delete();
+        $this->dispatch('toast', message: 'Data Laporan diagnosis pasien berhasil dihapus', type: 'danger');
+    }
 
     public function render()
     {

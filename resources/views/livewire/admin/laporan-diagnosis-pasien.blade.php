@@ -55,12 +55,13 @@
                         <td>{{ $item->umur}}</td>
                         <td>{{ $item->penyakit->nama}}</td>
                         <td>
-                            <form action="{{ route('laporan-diagnosis-satu-pasien')}}" method="post">
+                            <button wire:click="delete({{ $item->id }})" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i> Hapus</button>
+                            <form class="d-inline" action="{{ route('laporan-diagnosis-satu-pasien')}}" method="post">
                                 @csrf
 
                                 <input type="hidden" name="id_log_diagnosis" value="{{ $item->id }}">
 
-                                <button class="btn btn-outline-danger"><i class="fa fa-print"></i> Cetak</button>
+                                <button class="btn btn-sm btn-outline-danger"><i class="fa fa-print"></i> Cetak</button>
                             </form>
                         </td>
                     </tr>
