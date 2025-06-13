@@ -9,11 +9,11 @@ Route::get('/registrasi', \App\Livewire\Registration::class)->name('registrasi')
 Route::get('/profile', \App\Livewire\Profile::class)->name('profile')->middleware('auth');
 
 Route::prefix('admin')->middleware('auth')->group(function() {
+    Route::get('/', \App\Livewire\Admin\Dashboard::class)->name('admin.index');
     Route::get('/dashboard', \App\Livewire\Admin\Dashboard::class)->name('admin.dashboard');
     Route::get('/penyakit', \App\Livewire\Admin\Penyakit\Index::class)->name('admin.penyakit.index');
     Route::get('/gejala', \App\Livewire\Gejala\Index::class)->name('admin.gejala.index');
     Route::get('/rule', \App\Livewire\Rule\Index::class)->name('admin.rule.index');
-    Route::get('/diagnosis', \App\Livewire\Diagnosis\InfoPasien::class)->name('admin.diagnosis');
     Route::get('/gejala-penyakit', \App\Livewire\GejalaPenyakit\Index::class)->name('admin.gejala-penyakit.index');
     Route::get('/laporan-gejala-penyakit', \App\Livewire\Admin\LaporanGejalaPenyakit::class)->name('admin.laporan-gejala-penyakit');
     Route::get('/laporan-diagnosis-pasien', \App\Livewire\Admin\LaporanDiagnosisPasien::class)->name('admin.laporan-diagnosis-pasien');

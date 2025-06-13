@@ -23,7 +23,7 @@
     <x-sidebar-item
         icon="fa-heartbeat"
         :active="request()->routeIs('admin.diagnosis')"
-        :href="route('admin.diagnosis')">
+        :href="route('diagnosis')">
         Diagnosis
     </x-sidebar-item>
 
