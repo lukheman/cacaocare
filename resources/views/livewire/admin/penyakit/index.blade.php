@@ -41,11 +41,14 @@
                                 <td scope="row">{{ $loop->index + $penyakit->firstItem() }}</td>
                                 <td>{{ $item->kode }}</td>
                                 <td>{{ $item->nama }}</td>
-                                <td>{{ $item->deskripsi }}</td>
-                                <td>{{ $item->solusi }}</td>
+                                <td>{{ \Illuminate\Support\Str::limit($item->deskripsi, 50) }}</td>
+                                <td>{{ \Illuminate\Support\Str::limit($item->solusi, 50) }}</td>
                                 <td class="text-end">
-                                        <button wire:click="edit({{ $item->id }})"   class="btn btn-warning" type="button">Edit</button>
-                                        <button wire:click="delete({{ $item->id }})" class="btn btn-danger" type="button">Hapus</button>
+                            <div class="btn-group"> 
+
+                                        <button wire:click="edit({{ $item->id }})"   class="btn btn-sm btn-warning" type="button">Edit</button>
+                                        <button wire:click="delete({{ $item->id }})" class="btn btn-sm btn-danger" type="button">Hapus</button>
+                            </div>
                                 </td>
                             </tr>
 

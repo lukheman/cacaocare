@@ -12,14 +12,23 @@ class Index extends Component
 {
     use WithPagination;
 
+    public $selected_id; // id penyakit yang ingin dihapus
+
 
     #[On(['penyakitCreated', 'penyakitUpdated'])]
     public function updateList() {
     }
 
     public function delete($id) {
-        Penyakit::query()->find($id)->delete();
+        $this->dispatch('deleteConfirmation', message: 'Yakin untuk menghapus data penyakit?');
+        $this->selected_id = $id;
+    }
+
+    #[On('deleteConfirmed')]
+    public function deleteConfirmed() {
+        Penyakit::query()->find($this->selected_id)->delete();
         $this->dispatch('toast', message: 'Data Penyakit berhasil dihapus', type: 'danger');
+        $this->selected_id = null;
     }
 
 

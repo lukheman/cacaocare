@@ -103,8 +103,29 @@
         <!-- chart js -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+        <!-- sweetalert2 -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
         <script>
             document.addEventListener('livewire:initialized', () => {
+
+                Livewire.on('deleteConfirmation', ({message}) => {
+
+                    Swal.fire({
+                        title: message,
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Ya, Hapus"
+                    }).then((result) => {
+                            if (result.isConfirmed) {
+                                Livewire.dispatch('deleteConfirmed');
+                            }
+                        });
+
+
+                });
 
                 Livewire.on('toast', ({ message, type }) => {
 

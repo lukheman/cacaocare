@@ -40,8 +40,11 @@
                                 <td>{{ $item->nama }}</td>
                                 <td><span class="badge bg-light-primary">{{ $item->bobot }}</span></td>
                                 <td class="text-end">
-                                    <button wire:click="edit({{ $item->id }})" class="btn btn-warning" type="button">Edit</button>
-                                    <button wire:click="delete({{ $item->id }})" class="btn btn-danger" type="button">Hapus</button>
+                                <div class="btn-group">
+
+                                    <button wire:click="edit({{ $item->id }})" class="btn btn-sm btn-warning" type="button">Edit</button>
+                                    <button wire:click="delete({{ $item->id }})" class="btn btn-sm btn-danger" type="button">Hapus</button>
+                            </div>
                                 </td>
                             </tr>
 

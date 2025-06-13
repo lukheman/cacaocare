@@ -12,6 +12,8 @@ class Index extends Component
 {
     use WithPagination;
 
+    public $selected_id; // id penyakit yang ingin dihapus
+
 
     #[On(['gejalaCreated', 'gejalaUpdated'])]
     public function updateList() {
@@ -28,8 +30,16 @@ class Index extends Component
     }
 
     public function delete($id) {
-        Gejala::find($id)->delete();
-        $this->dispatch('toast', message: 'Data penyakit berhasil dihapus', type: 'danger');
+        $this->dispatch('deleteConfirmation', message: 'Yakin untuk menghapus data gejala?');
+        $this->selected_id = $id;
+    }
+
+
+    #[On('deleteConfirmed')]
+    public function deleteConfirmed() {
+        Gejala::find($this->selected_id)->delete();
+        $this->dispatch('toast', message: 'Data gejala berhasil dihapus', type: 'danger');
+        $this->selected_id = null;
     }
 
     public function render()
