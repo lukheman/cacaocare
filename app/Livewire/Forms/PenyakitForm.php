@@ -9,7 +9,7 @@ use Livewire\Form;
 
 class PenyakitForm extends Form
 {
-    #[Rule(['required'])]
+    #[Rule(['required', 'unique:penyakit,kode'])]
     public string $kode = '';
 
     #[Rule(['required'])]
@@ -22,6 +22,12 @@ class PenyakitForm extends Form
     public string $solusi = '';
 
     public string $id = '';
+
+    public function messages(): array {
+        return [
+            'kode.unique' =>  'Kode Penyakit telah digunakan'
+        ];
+    }
 
     public function store() {
 

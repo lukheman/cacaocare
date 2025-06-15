@@ -44,7 +44,7 @@
                                 <td>{{ \Illuminate\Support\Str::limit($item->deskripsi, 50) }}</td>
                                 <td>{{ \Illuminate\Support\Str::limit($item->solusi, 50) }}</td>
                                 <td class="text-end">
-                            <div class="btn-group"> 
+                            <div class="btn-group">
 
                                         <button wire:click="edit({{ $item->id }})"   class="btn btn-sm btn-warning" type="button">Edit</button>
                                         <button wire:click="delete({{ $item->id }})" class="btn btn-sm btn-danger" type="button">Hapus</button>

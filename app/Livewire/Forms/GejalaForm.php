@@ -31,7 +31,7 @@ class GejalaForm extends Form
     public function messages(): array
     {
         return [
-            'kode.unique' => 'Kode penyakit telah digunakan',
+            'kode.unique' => 'Kode gejala telah digunakan',
         ];
     }
 
