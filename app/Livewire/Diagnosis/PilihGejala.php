@@ -50,11 +50,13 @@ class PilihGejala extends Component
 
         $result = $hasil->sumBeliefByGejala();
         $this->kode_penyakit = array_keys($result);
-        $this->penyakit = Penyakit::whereIn('kode', $this->kode_penyakit)->get()->map(function ($item) use ($result) {
-            $item->belief = round($result[$item->kode] * 100, 2); // tambahkan field belief ke model
-
+        $this->penyakit = Penyakit::whereIn('kode', $this->kode_penyakit)
+            ->get()
+            ->map(function ($item) use ($result) { $item->belief = round($result[$item->kode] * 100, 2); // tambahkan field belief ke model
             return $item;
-        });
+        })
+        ->sortByDesc('belief')
+        ->values();
 
         session(['hasil_diagnosis' => ['penyakit' => $this->penyakit]]);
         $this->simpanHasilDiagnosis();
