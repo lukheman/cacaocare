@@ -2,12 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-use App\Models\Penyakit;
-use App\Models\Gejala;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Enums\Role;
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
+use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,9 +18,8 @@ class DatabaseSeeder extends Seeder
             'name' => 'Akmal admin',
             'email' => 'admin@gmail.com',
             'role' => Role::Admin,
-            'password' => bcrypt('asdf')
+            'password' => bcrypt('asdf'),
         ]);
-
 
     }
 }

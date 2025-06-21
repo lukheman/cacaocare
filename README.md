@@ -13,24 +13,23 @@ Implementasi 2 algoritma: Rp 450.000
 ## Role dan Fitur
 
 ### Role Admin
-- [x] Dashboard (free)
 - [x] CRUD data penyakit dan solusi (Rp 50.000)
 - [x] CRUD data gejala (Rp 50.000)
 - [x] CRUD data rule/gejala penyakit (Rp 50.000)
-- [x] Logout (free)
-- [x] Laporan gejala (melihat daftar penyakit) (Rp 30.000)
+
+- [x] Laporan hasil diagnosis pasien (Rp 30.000)
 - [x] Rekap laporan gejala (Rp 30.000)
 - [x] Melihat hasil diagnosis dan saran pengobatan (Rp 35.000)
 
 ### Role User (Pasien/Pengguna)
 - [x] Melakukan diagnosis dan melihat hasil diagnosis serta saran pengobatan
-- [x] Logout (free)
-- [ ] Profile user (free)
 
 ## Fitur Umum
-- Halaman home/login (free)
-- Menu konsultasi dan diagnosis (free)
-- Menu daftar dan informasi tentang penyakit (Rp 25.000)
+- [x] Dashboard (free)
+- [x] Profile user (free)
+- [x] Login/Logout (free)
+- [x] Landing page (free)
+- [x] Menu daftar dan informasi tentang penyakit (Rp 25.000)
 
 ## Harga
 

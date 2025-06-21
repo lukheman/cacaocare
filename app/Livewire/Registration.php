@@ -11,7 +11,8 @@ class Registration extends Component
 {
     public RegistrationForm $form;
 
-    public function regis() {
+    public function regis()
+    {
 
         $this->form->store();
 

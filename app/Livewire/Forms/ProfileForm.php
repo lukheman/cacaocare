@@ -8,11 +8,8 @@ use Livewire\Attributes\Rule;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 
-
 class ProfileForm extends Form
 {
-
-
     #[Rule(['required', 'max:50'])]
     public string $name = '';
 
@@ -24,14 +21,13 @@ class ProfileForm extends Form
     #[Rule(['nullable', 'min:4', 'confirmed'])]
     public string $password = '';
 
-
     #[Rule('nullable')]
     public string $password_confirmation = '';
 
+    public function update()
+    {
 
-    public function update() {
-
-$validated = $this->validate();
+        $validated = $this->validate();
         $user = User::find(auth()->user()->id);
 
         // Only update fields that have changed
@@ -50,6 +46,7 @@ $validated = $this->validate();
 
             if ($emailExists) {
                 $this->addError('email', 'The email has already been taken.');
+
                 return false;
             }
 
@@ -57,19 +54,18 @@ $validated = $this->validate();
         }
 
         // Only hash and update password if it's provided
-        if (!empty($this->password)) {
+        if (! empty($this->password)) {
             $updates['password'] = Hash::make($this->password);
         }
 
         // Only perform update if there are changes
-        if (!empty($updates)) {
+        if (! empty($updates)) {
             $user->update($updates);
+
             return true;
         }
 
         return true; // Return true even if no updates (consider this a successful operation)
 
-
     }
-
 }

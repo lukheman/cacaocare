@@ -3,17 +3,19 @@
 namespace App\Livewire\Gejala;
 
 use App\Livewire\Forms\GejalaForm;
+use App\Models\Gejala;
 use Livewire\Attributes\On;
 use Livewire\Component;
-use App\Models\Gejala;
 
 class Form extends Component
 {
     public string $state = 'create';
+
     public GejalaForm $form;
 
     #[On('editGejala')]
-    public function showEditForm($id) {
+    public function showEditForm($id)
+    {
 
         $this->state = 'edit';
 
@@ -27,19 +29,22 @@ class Form extends Component
     }
 
     #[On('createGejala')]
-    public function showCreateForm() {
+    public function showCreateForm()
+    {
         $this->state = 'create';
         $this->form->reset();
     }
 
-    public function update() {
+    public function update()
+    {
         $this->form->update();
         $this->dispatch('gejalaUpdated');
         $this->dispatch('toast', message: 'Data gejala berhasil diubah', type: 'warning');
 
     }
 
-    public function save() {
+    public function save()
+    {
         $this->form->store();
         $this->dispatch('gejalaCreated');
         $this->dispatch('toast', message: 'Data gejala berhasil ditambahkan', type: 'success');

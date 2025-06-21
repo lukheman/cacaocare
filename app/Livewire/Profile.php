@@ -3,25 +3,23 @@
 namespace App\Livewire;
 
 use App\Livewire\Forms\ProfileForm;
-use App\Models\User;
-use Livewire\Attributes\Layout;
 use Livewire\Component;
-use function flash;
 
 class Profile extends Component
 {
-
     public ProfileForm $form;
 
-    public function edit() {
-        if($this->form->update()) {
+    public function edit()
+    {
+        if ($this->form->update()) {
 
             $this->dispatch('toast', message: 'Berhasil menyimpan perubahan profile');
         }
 
     }
 
-    public function mount() {
+    public function mount()
+    {
 
         $user = auth()->user();
 

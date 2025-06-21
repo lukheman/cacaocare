@@ -7,27 +7,30 @@ use App\Models\Penyakit;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
-
 class Edit extends Component
 {
-
     public $gejala_penyakit_all;
+
     public string $nama_penyakit = '';
+
     public $id_gejala_terpilih = []; // untuk menyimpan gejala terpilih
+
     public $gejala_penyakit;
 
     public $penyakit;
+
     public string $edit_state = 'normal';
 
     public $bobots = [];
 
-
     #[On('editGejalaPenyakit')]
-    public function edit($id) {
+    public function edit($id)
+    {
         $this->mount($id);
     }
 
-    public function mount($id_penyakit = null) {
+    public function mount($id_penyakit = null)
+    {
 
         if ($id_penyakit) {
             $this->nama_penyakit = Penyakit::query()->where('id', $id_penyakit)->first()->nama;
@@ -46,10 +49,10 @@ class Edit extends Component
 
         }
 
-
     }
 
-    public function updateGejala() {
+    public function updateGejala()
+    {
         $this->penyakit->gejala()->sync($this->id_gejala_terpilih);
         $this->dispatch('toast', message: 'Gejala penyakit berhasil diperbarui');
 

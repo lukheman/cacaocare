@@ -7,18 +7,20 @@ use App\Models\Gejala;
 use App\Models\LogDiagnosis;
 use App\Models\Penyakit;
 use Livewire\Attributes\Layout;
-use Livewire\Attributes\On;
 use Livewire\Component;
+
+use function array_keys;
 use function session;
 
 #[Layout('layouts.guest')]
 class PilihGejala extends Component
 {
-
     public $gejala;
+
     public $id_gejala_terpilih = [];
 
     public $penyakit;
+
     public array $kode_penyakit = [];
 
     public function start()
@@ -46,40 +48,44 @@ class PilihGejala extends Component
 
         $hasil->filterConflict();
 
-        $max_value = $hasil->sumBeliefByGejala();
+        $result = $hasil->sumBeliefByGejala();
+        $this->kode_penyakit = array_keys($result);
+        $this->penyakit = Penyakit::whereIn('kode', $this->kode_penyakit)->get()->map(function ($item) use ($result) {
+            $item->belief = round($result[$item->kode] * 100, 2); // tambahkan field belief ke model
 
-        $this->kode_penyakit = explode(',', array_key_first($max_value));
-        $this->belief = round(array_values($max_value)[0] * 100, 2);
-        $this->penyakit = Penyakit::whereIn('kode', $this->kode_penyakit)->get();
+            return $item;
+        });
 
-        session(['hasil_diagnosis' => ['penyakit' => $this->penyakit, 'belief' => $this->belief ]]);
+        session(['hasil_diagnosis' => ['penyakit' => $this->penyakit]]);
         $this->simpanHasilDiagnosis();
         $this->dispatch('showHasilDiagnosis');
 
     }
 
-    public function simpanHasilDiagnosis() {
+    public function simpanHasilDiagnosis()
+    {
         $info_pasien = session('info_pasien', []);
         $nama = $info_pasien['nama'] ?? '';
         $umur = $info_pasien['umur'] ?? '';
 
-        foreach($this->kode_penyakit as $kode) {
-            $id_penyakit = Penyakit::query()->where('kode', $kode)->first()->id;
-            $log_diagnosis = LogDiagnosis::simpan($nama, $umur, $id_penyakit, $this->belief);
+        foreach ($this->penyakit as $item) {
+            $log_diagnosis = LogDiagnosis::simpan($nama, $umur, $item->id, $item->belief);
 
             foreach ($this->id_gejala_terpilih as $id_gejala) {
                 $log_diagnosis->details()->create([
-                    'id_gejala' => $id_gejala
+                    'id_gejala' => $id_gejala,
                 ]);
             }
         }
     }
 
-    public function backToInfoPasien() {
+    public function backToInfoPasien()
+    {
         $this->dispatch('showInfoPasien');
     }
 
-    public function mount() {
+    public function mount()
+    {
         $this->gejala = Gejala::all();
     }
 

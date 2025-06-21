@@ -10,13 +10,14 @@ class Penyakit extends Model
 
     protected $guarded = [];
 
-    public function gejala() {
+    public function gejala()
+    {
         return $this->belongsToMany(Gejala::class, 'gejala_penyakit', 'id_penyakit', 'id_gejala');
-            /* ->withPivot('bobot'); */
+        /* ->withPivot('bobot'); */
     }
 
-    public function logDiagnosis() {
+    public function logDiagnosis()
+    {
         return $this->hasMany(LogDiagnosis::class, 'id_penyakit');
     }
-
 }

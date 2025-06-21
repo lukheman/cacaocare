@@ -8,6 +8,7 @@ use Livewire\Component;
 class KurvaHasilDiagnosis extends Component
 {
     public $labels;
+
     public $data;
 
     public function render()
@@ -16,6 +17,7 @@ class KurvaHasilDiagnosis extends Component
 
         $this->labels = $penyakit->pluck('nama');
         $this->data = $penyakit->pluck('log_diagnosis_count');
+
         return view('livewire.chart.kurva-hasil-diagnosis');
     }
 }

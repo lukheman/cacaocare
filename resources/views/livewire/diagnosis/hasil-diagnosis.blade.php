@@ -18,7 +18,7 @@
             @foreach ($penyakit as $item)
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     <span><b>{{ $item->nama }}</b></span>
-                    <span class="badge bg-success rounded-pill">{{ $belief }}%</span>
+                    <span class="badge bg-success rounded-pill">{{ $item->belief }}%</span>
                 </li>
             @endforeach
         </ul>

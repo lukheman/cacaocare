@@ -2,11 +2,8 @@
 
 namespace App\Livewire\Admin;
 
-use App\Models\Gejala;
 use App\Models\Penyakit;
-use Livewire\Attributes\Rule;
 use Livewire\Component;
-
 
 class LaporanGejalaPenyakit extends Component
 {

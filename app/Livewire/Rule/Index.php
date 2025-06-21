@@ -2,8 +2,8 @@
 
 namespace App\Livewire\Rule;
 
-use Livewire\Component;
 use App\Models\Penyakit;
+use Livewire\Component;
 
 class Index extends Component
 {
@@ -11,14 +11,15 @@ class Index extends Component
 
     public $id_penyakit;
 
-
-    public function show($id) {
+    public function show($id)
+    {
         $this->state = 'show';
         $this->id_penyakit = $id;
         $this->dispatch('showGejalaPenyakit', $id);
     }
 
-    public function edit($id) {
+    public function edit($id)
+    {
         $this->state = 'edit';
         $this->id_penyakit = $id;
         $this->dispatch('editGejalaPenyakit', $id);
@@ -29,7 +30,7 @@ class Index extends Component
         $rules = Penyakit::with('gejala')->get();
 
         return view('livewire.rule.index', [
-            'rules' => $rules
+            'rules' => $rules,
         ]);
     }
 }

@@ -2,41 +2,42 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DetailLogDiagnosis;
 use App\Models\LogDiagnosis;
 use App\Models\Penyakit;
 use Illuminate\Http\Request;
 
 class LaporanController extends Controller
 {
-
-    public function gejalaPenyakit(Request $request) {
+    public function gejalaPenyakit(Request $request)
+    {
 
         $validated = $request->validate([
-            'id_penyakit' => ['required', 'exists:penyakit,id']
+            'id_penyakit' => ['required', 'exists:penyakit,id'],
         ]);
 
         $penyakit = Penyakit::find($validated['id_penyakit']);
 
         return view('laporan.laporan-gejala-penyakit', [
-            'penyakit' => $penyakit
+            'penyakit' => $penyakit,
         ]);
 
     }
 
-    public function diagnosisPasien(Request $request) {
+    public function diagnosisPasien(Request $request)
+    {
 
         $log_diagnosis = LogDiagnosis::with('penyakit')->get();
 
         return view('laporan.laporan-diagnosis-pasien', [
-            'log_diagnosis' => $log_diagnosis
+            'log_diagnosis' => $log_diagnosis,
         ]);
 
     }
 
-    public function diagnosisSatuPasien(Request $request) {
+    public function diagnosisSatuPasien(Request $request)
+    {
         $validated = $request->validate([
-            'id_log_diagnosis' => ['required', 'exists:log_diagnosis,id']
+            'id_log_diagnosis' => ['required', 'exists:log_diagnosis,id'],
         ]);
 
         $diagnosis = LogDiagnosis::with(['penyakit', 'details.gejala'])->find($validated['id_log_diagnosis']);
@@ -45,7 +46,5 @@ class LaporanController extends Controller
             'diagnosis' => $diagnosis,
         ]);
 
-
     }
-
 }

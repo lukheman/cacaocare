@@ -9,7 +9,6 @@ use Livewire\Form;
 
 class GejalaForm extends Form
 {
-
     #[Validate(onUpdate: false)]
     #[Rule(['required', 'unique:gejala,kode'])]
     public string $kode = '';
@@ -19,7 +18,6 @@ class GejalaForm extends Form
 
     #[Rule('required')]
     public float $bobot = 0;
-
 
     public string $id = '';
 
@@ -35,7 +33,8 @@ class GejalaForm extends Form
         ];
     }
 
-    public function store() {
+    public function store()
+    {
 
         $validated = $this->validate();
 
@@ -47,10 +46,10 @@ class GejalaForm extends Form
 
         $this->reset();
 
-
     }
 
-    public function update() {
+    public function update()
+    {
 
         $gejala = Gejala::find($this->id);
 
@@ -63,7 +62,5 @@ class GejalaForm extends Form
             $gejala->update($this->validate());
         }
 
-
     }
-
 }

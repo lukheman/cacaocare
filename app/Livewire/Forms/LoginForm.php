@@ -2,12 +2,12 @@
 
 namespace App\Livewire\Forms;
 
+use App\Enums\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Rule;
 use Livewire\Form;
-use App\Enums\Role;
 
 class LoginForm extends Form
 {
@@ -17,12 +17,12 @@ class LoginForm extends Form
     #[Rule(['required'])]
     public string $password = '';
 
-    public function store() {
+    public function store()
+    {
 
+        if (Auth::attempt($this->validate())) {
 
-        if(Auth::attempt($this->validate())) {
-
-            if(Role::from(Auth::user()->role) === Role::Admin) {
+            if (Role::from(Auth::user()->role) === Role::Admin) {
                 return redirect()->route('admin.dashboard');
 
             }
@@ -31,9 +31,8 @@ class LoginForm extends Form
             /* } */
 
             throw ValidationException::withMessages([
-                'role' => 'role tidak ada'
+                'role' => 'role tidak ada',
             ]);
-
 
         }
 
@@ -44,5 +43,4 @@ class LoginForm extends Form
         /* ]); */
 
     }
-
 }

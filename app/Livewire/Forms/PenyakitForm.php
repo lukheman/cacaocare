@@ -4,7 +4,6 @@ namespace App\Livewire\Forms;
 
 use App\Models\Penyakit;
 use Livewire\Attributes\Rule;
-use Livewire\Attributes\Validate;
 use Livewire\Form;
 
 class PenyakitForm extends Form
@@ -23,13 +22,15 @@ class PenyakitForm extends Form
 
     public string $id = '';
 
-    public function messages(): array {
+    public function messages(): array
+    {
         return [
-            'kode.unique' =>  'Kode Penyakit telah digunakan'
+            'kode.unique' => 'Kode Penyakit telah digunakan',
         ];
     }
 
-    public function store() {
+    public function store()
+    {
 
         $validated = $this->validate();
 
@@ -44,9 +45,9 @@ class PenyakitForm extends Form
 
     }
 
-    public function update() {
+    public function update()
+    {
         $penyakit = Penyakit::query()->find($this->id);
         $penyakit->update($this->validate());
     }
-
 }

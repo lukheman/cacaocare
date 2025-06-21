@@ -7,19 +7,21 @@ use Livewire\Component;
 
 class Index extends Component
 {
-
     public $state = '';
+
     public $id_penyakit;
 
     public bool $showEditButton = true;
 
-    public function show($id) {
+    public function show($id)
+    {
         $this->state = 'show';
         $this->id_penyakit = $id;
         $this->dispatch('showGejalaPenyakit', $id);
     }
 
-    public function edit($id) {
+    public function edit($id)
+    {
         $this->dispatch('editGejalaPenyakit', $id);
         $this->id_penyakit = $id;
         $this->state = 'edit';
@@ -29,6 +31,7 @@ class Index extends Component
     {
 
         $rules = Penyakit::with('gejala')->get();
+
         return view('livewire.gejala-penyakit.index', ['rules' => $rules]);
 
     }

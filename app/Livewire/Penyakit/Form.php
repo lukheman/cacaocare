@@ -9,18 +9,20 @@ use Livewire\Component;
 
 class Form extends Component
 {
-
     public string $state = 'create';
+
     public PenyakitForm $form;
 
     #[On('createPenyakit')]
-    public function showCreatePenyakit() {
+    public function showCreatePenyakit()
+    {
         $this->state = 'create';
         $this->form->reset();
     }
 
     #[On('editPenyakit')]
-    public function showEditForm($id) {
+    public function showEditForm($id)
+    {
         $this->state = 'edit';
 
         $penyakit = Penyakit::find($id);
@@ -33,13 +35,15 @@ class Form extends Component
 
     }
 
-    public function update() {
+    public function update()
+    {
         $this->form->update();
         $this->dispatch('penyakitUpdated');
         $this->dispatch('toast', message: 'Data Penyakit berhasil diperbarui', type: 'warning');
     }
 
-    public function save() {
+    public function save()
+    {
         $this->form->store();
         $this->dispatch('penyakitCreated');
         $this->dispatch('toast', message: 'Data Penyakit berhasil ditambahkan', type: 'success');
