@@ -26,10 +26,10 @@ class LaporanController extends Controller
     public function diagnosisPasien(Request $request)
     {
 
-        $log_diagnosis = LogDiagnosis::with('penyakit')->get();
+        $log_diagnosis = LogDiagnosis::with(['penyakit', 'gejala'])->get();
 
         return view('laporan.laporan-diagnosis-pasien', [
-            'log_diagnosis' => $log_diagnosis,
+            'diagnosis' => $log_diagnosis,
         ]);
 
     }
