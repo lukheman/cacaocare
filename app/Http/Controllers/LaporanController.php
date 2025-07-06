@@ -40,7 +40,7 @@ class LaporanController extends Controller
             'id_log_diagnosis' => ['required', 'exists:log_diagnosis,id'],
         ]);
 
-        $diagnosis = LogDiagnosis::with(['penyakit', 'details.gejala'])->find($validated['id_log_diagnosis']);
+        $diagnosis = LogDiagnosis::with(['penyakit', 'gejala'])->find($validated['id_log_diagnosis']);
 
         return view('laporan.laporan-diagnosis-satu-pasien', [
             'diagnosis' => $diagnosis,
