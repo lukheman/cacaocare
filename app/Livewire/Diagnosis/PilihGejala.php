@@ -72,15 +72,17 @@ class PilihGejala extends Component
         $nama = $info_pasien['nama'] ?? '';
         $umur = $info_pasien['umur'] ?? '';
 
-        foreach ($this->penyakit as $item) {
-            $log_diagnosis = LogDiagnosis::simpan($nama, $umur, $item->id, $item->belief);
+        $log_diagnosis = LogDiagnosis::create([
+            'nama' => $nama,
+            'umur' => $umur,
+        ]);
 
-            foreach ($this->id_gejala_terpilih as $id_gejala) {
-                $log_diagnosis->details()->create([
-                    'id_gejala' => $id_gejala,
-                ]);
-            }
+        $log_diagnosis->gejala()->attach($this->id_gejala_terpilih);
+
+        foreach ($this->penyakit as $penyakit) {
+            $log_diagnosis->penyakit()->attach($penyakit->id, ['belief' => $penyakit->belief ]);
         }
+
     }
 
     public function backToInfoPasien()
