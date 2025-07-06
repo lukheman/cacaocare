@@ -43,7 +43,7 @@
                         <th>Nama</th>
                         <th>Umur</th>
                         <th>Diagnosis Penyakit</th>
-                        <th>Aksi</th>
+                        <th class="text-end">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -54,7 +54,7 @@
                         <td>{{ $item->nama}}</td>
                         <td>{{ $item->umur}}</td>
                         <td>{{ $item->penyakit->nama}}</td>
-                        <td>
+                        <td class="text-end">
                             <button wire:click="delete({{ $item->id }})" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i> Hapus</button>
                             <form class="d-inline" action="{{ route('laporan-diagnosis-satu-pasien')}}" method="post">
                                 @csrf
