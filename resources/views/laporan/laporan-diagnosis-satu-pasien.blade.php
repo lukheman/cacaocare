@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
-    <title>Laporan Diagnosis Pasien</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700&display=swap" rel="stylesheet">
-
+    <title>Laporan Diagnosis Pasien</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Source Sans Pro', sans-serif;
@@ -41,18 +38,48 @@
         }
 
         .info-table {
-            margin-top: 30px;
             width: 100%;
+            margin-top: 30px;
+            border-collapse: collapse;
         }
 
         .info-table td {
-            padding: 8px 5px;
+            padding: 8px;
             font-size: 0.95rem;
         }
 
         .info-table td:first-child {
             width: 180px;
             font-weight: bold;
+        }
+
+        .data-table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        .data-table th, .data-table td {
+            border: 1px solid #000;
+            padding: 10px;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        .data-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        .section-title {
+            margin-top: 30px;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .description {
+            margin-top: 20px;
+            font-size: 0.95rem;
         }
 
         .footer {
@@ -66,10 +93,13 @@
                 margin: 0;
                 padding: 0;
             }
+
+            .container {
+                width: 100%;
+            }
         }
     </style>
 </head>
-
 <body onload="window.print()">
     <div class="container">
         <h3 class="text-center">RSUD SMS BERJAYA</h3>
@@ -78,7 +108,6 @@
             Kabupaten Kolaka, Sulawesi Tenggara 93511
         </address>
         <hr>
-
         <h5 class="text-center"><u>Laporan Hasil Diagnosis Pasien</u></h5>
 
         <table class="info-table">
@@ -94,37 +123,57 @@
                 <td>Tanggal Diagnosis</td>
                 <td>: {{ $diagnosis->created_at->translatedFormat('d F Y') }}</td>
             </tr>
-            <tr>
-                <td>Diagnosis Penyakit</td>
-                <td>: <strong>{{ $diagnosis->penyakit->nama }}</strong></td>
-            </tr>
-            <tr>
-                <td>Deskripsi Penyakit</td>
-                <td>: {{ $diagnosis->penyakit->deskripsi }}</td>
-            </tr>
-
-            <tr>
-                <td valign="top">Gejala yang dirasakan</td>
-                <td valign="top">:
-                    <ul>
-                    @foreach ($diagnosis->details as $item)
-                        <li>{{ $item->gejala->nama}}</li>
-
-                    @endforeach
-                    </ul>
-
-                </td>
-            </tr>
-            <tr>
-                <td>Nilai Keyakinan (Belief)</td>
-                <td>: {{ number_format($diagnosis->belief, 2) }}%</td>
-            </tr>
         </table>
+
+        <p class="section-title">Gejala yang Dipilih</p>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Kode Gejala</th>
+                    <th>Nama Gejala</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($diagnosis->gejala as $item)
+                <tr>
+                    <td>{{ $item->kode }}</td>
+                    <td>{{ $item->nama }}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+
+        <p class="section-title">Hasil Diagnosis Penyakit</p>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Kode Penyakit</th>
+                    <th>Nama Penyakit</th>
+                    <th>Kepercayaan</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($diagnosis->penyakit as $item)
+                <tr>
+                    <td>{{ $item->kode }}</td>
+                    <td>{{ $item->nama }}</td>
+                    <td>{{ $item->pivot->belief }}%</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+
+        <p class="section-title">Deskripsi Penyakit</p>
+        @foreach ($diagnosis->penyakit as $item)
+        <div class="description">
+            <strong>{{ $item->nama }}:</strong>
+            <p>{{ $item->deskripsi }}</p>
+        </div>
+        @endforeach
 
         <div class="footer">
             Kolaka, {{ \Carbon\Carbon::now()->translatedFormat('d F Y') }}
         </div>
     </div>
 </body>
-
 </html>
