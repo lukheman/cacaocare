@@ -3,6 +3,7 @@
 namespace App\Livewire\Chart;
 
 use App\Models\Penyakit;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class KurvaHasilDiagnosis extends Component
@@ -13,10 +14,21 @@ class KurvaHasilDiagnosis extends Component
 
     public function render()
     {
-        $penyakit = Penyakit::withCount('logDiagnosis')->get();
+// Query untuk menghitung jumlah diagnosis per penyakit
+        $penyakitCounts = DB::table('log_diagnosis_penyakit')
+            ->select('penyakit.nama', DB::raw('count(*) as total'))
+            ->join('penyakit', 'log_diagnosis_penyakit.id_penyakit', '=', 'penyakit.id')
+            ->groupBy('penyakit.id', 'penyakit.nama')
+            ->get();
 
-        $this->labels = $penyakit->pluck('nama');
-        $this->data = $penyakit->pluck('log_diagnosis_count');
+        // Format hasil untuk ditampilkan
+        $result = $penyakitCounts->mapWithKeys(function ($item) {
+            return [$item->nama => $item->total];
+        })->toArray();
+
+
+        $this->labels = array_keys($result);
+        $this->data = array_values($result);
 
         return view('livewire.chart.kurva-hasil-diagnosis');
     }

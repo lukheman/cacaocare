@@ -18,6 +18,6 @@ class Penyakit extends Model
 
     public function logDiagnosis()
     {
-        return $this->hasMany(LogDiagnosis::class, 'id_penyakit');
+        return $this->belongsToMany(LogDiagnosis::class, 'log_diagnosis_penyakit', 'id_log_diagnosis', 'id_penyakit');
     }
 }
