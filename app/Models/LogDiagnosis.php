@@ -12,12 +12,12 @@ class LogDiagnosis extends Model
 
     public function penyakit()
     {
-        return $this->belongsTo(Penyakit::class, 'id_penyakit');
+        return $this->belongsToMany(Penyakit::class, 'log_diagnosis_penyakit', 'id_log_diagnosis', 'id_penyakit')->withPivot('belief');
     }
 
-    public function details()
+    public function gejala()
     {
-        return $this->hasMany(DetailLogDiagnosis::class, 'id_log_diagnosis');
+        return $this->belongsToMany(Gejala::class, 'log_diagnosis_gejala', 'id_log_diagnosis', 'id_gejala');
     }
 
     public static function simpan($nama, $umur, $id_penyakit, $belief)
