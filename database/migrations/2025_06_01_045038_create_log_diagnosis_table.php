@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->integer('umur');
-            $table->foreignId('id_penyakit')->constrained('penyakit')->cascadeOnDelete();
-            $table->decimal('belief', 5, 2);
             $table->timestamps();
         });
     }
