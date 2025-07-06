@@ -30,7 +30,7 @@ class LaporanDiagnosisPasien extends Component
     public function render()
     {
 
-        $log_diagnosis = LogDiagnosis::with('penyakit')->paginate(10);
+        $log_diagnosis = LogDiagnosis::paginate(10);
 
         return view('livewire.admin.laporan-diagnosis-pasien', ['log_diagnosis' => $log_diagnosis]);
     }
