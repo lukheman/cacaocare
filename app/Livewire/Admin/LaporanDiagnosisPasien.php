@@ -12,11 +12,16 @@ class LaporanDiagnosisPasien extends Component
     use WithPagination;
 
     public $selected_id; // id penyakit yang ingin dihapus
+    public ?LogDiagnosis $selected_log_diagnosis; // id log diagnosis yang dilihat detailnya
 
     public function delete($id)
     {
         $this->dispatch('deleteConfirmation', message: 'Yakin untuk menghapus data laporan diagnosis pasien?');
         $this->selected_id = $id;
+    }
+
+    public function view($id) {
+        $this->selected_log_diagnosis = LogDiagnosis::with(['gejala', 'penyakit'])->find($id);
     }
 
     #[On('deleteConfirmed')]
