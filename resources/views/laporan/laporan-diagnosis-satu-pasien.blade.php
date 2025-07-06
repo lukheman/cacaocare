@@ -125,7 +125,7 @@
             </tr>
         </table>
 
-        <p class="section-title">Gejala yang Dipilih</p>
+        <p class="section-title">Gejala yang Diderita</p>
         <table class="data-table">
             <thead>
                 <tr>
