@@ -3,8 +3,10 @@
 namespace App\Livewire;
 
 use App\Livewire\Forms\ProfileForm;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 
+#[Title('Profil')]
 class Profile extends Component
 {
     public ProfileForm $form;
