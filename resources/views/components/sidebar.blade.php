@@ -4,7 +4,7 @@
             <div class="d-flex justify-content-between align-items-center">
                 <div class="logo">
                     <a href="">
-                        TaniPedia
+                        CacaoCare
                     </a>
                 </div>
                 <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
@@ -51,21 +51,47 @@
                             <hr>
                             <li class="sidebar-title">Navigasi Utama</li>
 
-                            <x-nav-link
-                            icon="bi-speedometer2"
-                            href="{{ route('dashboard')}}"
-                            :active="request()->routeIs('dashboard')"
-                            >
-                            Beranda
-                        </x-nav-link>
+<x-nav-link
+    icon="bi-house-door-fill"
+    href="{{ route('dashboard') }}"
+    :active="request()->routeIs('dashboard')"
+>
+    Beranda
+</x-nav-link>
 
-                        <x-nav-link
-                            icon="bi-speedometer2"
-                            href="{{ route('penyakit-table')}}"
-                            :active="request()->routeIs('penyakit-table')"
-                            >
-                            Penyakit
-                        </x-nav-link>
+<x-nav-link
+    icon="bi-bug-fill"
+    href="{{ route('penyakit-table') }}"
+    :active="request()->routeIs('penyakit-table')"
+>
+    Daftar Penyakit
+</x-nav-link>
+
+<x-nav-link
+    icon="bi-exclamation-triangle-fill"
+    href="{{ route('gejala-table') }}"
+    :active="request()->routeIs('gejala-table')"
+>
+    Daftar Gejala
+</x-nav-link>
+
+<x-nav-link
+    icon="bi-kanban-fill"
+    href="{{ route('rule-table') }}"
+    :active="request()->routeIs('rule-table')"
+>
+    Aturan Diagnosa
+</x-nav-link>
+
+<x-nav-link
+    icon="bi-journal-text"
+    href="{{ route('riwayat-konsultasi-table') }}"
+    :active="request()->routeIs('riwayat-konsultasi-table')"
+>
+                        Riwayat Konsultasi
+</x-nav-link>
+
+
 
 
                         <li class="sidebar-title">Akun</li>

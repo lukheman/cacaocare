@@ -11,6 +11,10 @@ class Landing extends Component
 {
     public $penyakit;
 
+    public function mount() {
+        $this->penyakit = Penyakit::all();
+    }
+
     public function render()
     {
         $this->penyakit = Penyakit::all();

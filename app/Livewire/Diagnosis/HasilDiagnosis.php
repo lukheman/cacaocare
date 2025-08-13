@@ -13,6 +13,9 @@ class HasilDiagnosis extends Component
     public string $nama;
 
     public string $umur;
+    public string $jenis_kelamin = '';
+
+    public string $alamat = '';
 
     public function mount()
     {
@@ -23,6 +26,8 @@ class HasilDiagnosis extends Component
         $info_pasien = session('info_pasien', []);
         $this->nama = $info_pasien['nama'] ?? '';
         $this->umur = $info_pasien['umur'] ?? '';
+        $this->jenis_kelamin = $info_pasien['jenis_kelamin'] ?? '';
+        $this->alamat = $info_pasien['alamat'] ?? '';
 
     }
 

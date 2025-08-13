@@ -3,47 +3,46 @@
 namespace App\Livewire\Forms;
 
 use App\Models\Gejala;
-use Livewire\Attributes\Rule;
+use Illuminate\Validation\Rule;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 
 class GejalaForm extends Form
 {
-    #[Validate(onUpdate: false)]
-    #[Rule(['required', 'unique:gejala,kode'])]
+
+    public ?Gejala $gejala = null;
+
     public string $kode = '';
 
-    #[Rule(['required'])]
     public string $nama = '';
 
-    #[Rule('required')]
     public float $bobot = 0;
 
-    public string $id = '';
-
-    /**
-     * Get the error messages for the defined validation rules.
-     *
-     * @return array<string, string>
-     */
-    public function messages(): array
-    {
+    public function rules(): array {
         return [
-            'kode.unique' => 'Kode gejala telah digunakan',
+            'kode' => [
+                'required',
+                Rule::unique('gejala', 'kode')->ignore($this->gejala?->id),
+            ],
+            'nama' => 'required',
+            'bobot' => 'required'
         ];
     }
+
+    public function messages(): array
+    {
+    return [
+        'kode.required' => 'Mohon masukkan kode gejala.',
+        'kode.unique' => 'Kode gejala telah digunakan, silakan gunakan kode lain.',
+        'nama.required' => 'Mohon masukkan nama gejala.',
+        'bobot.required' => 'Mohon masukkan bobot gejala.',
+    ];
+}
 
     public function store()
     {
 
-        $validated = $this->validate();
-
-        Gejala::query()->create([
-            'kode' => $validated['kode'],
-            'nama' => $validated['nama'],
-            'bobot' => $validated['bobot'],
-        ]);
-
+        Gejala::query()->create($this->validate());
         $this->reset();
 
     }
@@ -51,16 +50,12 @@ class GejalaForm extends Form
     public function update()
     {
 
-        $gejala = Gejala::find($this->id);
+        $this->gejala->update($this->validate());
+        $this->reset();
 
-        if ($this->kode === $gejala->kode) {
-            $gejala->update([
-                'nama' => $this->nama,
-                'bobot' => $this->bobot,
-            ]);
-        } else {
-            $gejala->update($this->validate());
-        }
+    }
 
+    public function delete() {
+        $this->gejala->delete();
     }
 }

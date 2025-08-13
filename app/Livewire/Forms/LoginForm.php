@@ -22,8 +22,8 @@ class LoginForm extends Form
 
         if (Auth::attempt($this->validate())) {
 
-            if (Role::from(Auth::user()->role) === Role::Admin) {
-                return redirect()->route('admin.dashboard');
+            if (Role::from(Auth::user()->role) === Role::ADMIN) {
+                return redirect()->route('penyakit-table');
 
             }
             /* } else if (Role::from(Auth::user()->role) === Role::Pasien) { */

@@ -1,42 +1,48 @@
-<div class="row  justify-content-center align-items-center vh-100">
+<div>
 
-    <div class="col-8 text-center text-white">
+    <section class="hero-section" id="beranda">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 fade-up">
+                    <h1 class="display-4 fw-bold mb-4">Jaga Kesehatan Tanaman Coklat Anda</h1>
+                    <p class="lead mb-4">Sistem pakar berbasis AI untuk mendiagnosa penyakit tanaman coklat dengan cepat dan akurat.</p>
+                    <button class="btn btn-primary btn-lg">Mulai Diagnosis</button>
+                </div>
+                <div class="col-lg-6 fade-up" style="animation-delay: 0.2s;">
+                    <!-- <img src="https://source.unsplash.com/random/600x400/?cacao,plant" alt="Tanaman Coklat" class="img-fluid rounded-custom shadow-custom"> -->
+                </div>
+            </div>
+        </div>
+    </section>
 
-                <h1 class="text-white">Selamat Datang</h1>
-                <p>Sistem Pakar penyakti lambung adalah sebuah sistem berbasis komputer yang dirancang untuk meniru
-                    proses berpikir seorang pakar (dokter atau spesialis gastroenterologi) dalam mendiagnosis dan
-                    memberikan saran pengobatan untuk berbagai gangguan atau penyakit yang berhubungan dengan lambung
-                </p>
-
-                <a href="{{ route('diagnosis')}}" class="btn btn-primary">Mulai Konsultasi</a>
-    </div>
-
-    <div class="col-12 vh-100 mt-5 " id="daftar-penyakit" style="padding-top: 200px">
-
-        <div class="row">
+    <!-- Diseases Section -->
+<section class="py-5" id="penyakit">
+    <div class="container">
+        <h2 class="section-title text-center mb-5 fade-up">Penyakit Umum Tanaman Coklat</h2>
+        <div class="row g-4">
 
             @foreach ($penyakit as $item)
-
-            <div class="col-4 mt-3">
-
-                <div class="card h-100">
-                    <div class="card-header">
-                        <h3 class="card-title">{{ $item->nama }}</h3>
-                    </div>
-
-                    <div class="card-body">
-                        <p>{{ $item->deskripsi }}</p>
+            <div class="col-md-4 fade-up">
+                <div class="disease-card h-100 d-flex flex-column">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">{{ $item->nama }}</h5>
+                        <p class="card-text flex-grow-1">{{ $item->deskripsi }}</p>
+                        <!-- <a href="#" class="btn btn-primary mt-auto">Pelajari Lebih Lanjut</a> -->
                     </div>
                 </div>
-
             </div>
-
             @endforeach
 
         </div>
-
     </div>
+</section>
 
+    <!-- Call to Action -->
+    <!-- <section class="cta-section" id="diagnosa"> -->
+    <!--     <div class="container text-center fade-up"> -->
+    <!--         <h2 class="mb-4">Siap Mendiagnosa Tanaman Coklat Anda?</h2> -->
+    <!--         <p class="lead mb-4">Gunakan sistem pakar kami untuk mendeteksi penyakit pada tanaman coklat Anda sekarang juga!</p> -->
+    <!--         <button class="btn btn-light btn-lg px-5">Mulai Diagnosis</button> -->
+    <!--     </div> -->
+    <!-- </section> -->
 </div>
-
-

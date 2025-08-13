@@ -11,11 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('gejala', function (Blueprint $table) {
+        Schema::create('riwayat_konsultasi', function (Blueprint $table) {
             $table->id();
-            $table->string('kode', 10)->unique();
             $table->string('nama');
-            $table->float('bobot');
+            $table->integer('umur');
+            $table->enum('jenis_kelamin', ['P', 'L']);
+            $table->string('alamat');
+            $table->date('tanggal_konsultasi')->default(now());
+            $table->foreignId('id_penyakit')->constrained('penyakit')->cascadeOnDelete();
+            $table->float('belief');
             $table->timestamps();
         });
     }
@@ -25,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('gejalas');
+        Schema::dropIfExists('riwayat_konsultasi');
     }
 };

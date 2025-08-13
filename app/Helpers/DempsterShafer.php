@@ -209,8 +209,8 @@ class DempsterShafer
             $result[$code] = round($value, 4);
         }
 
-        /* return $this->maxBeliefGejala($result); */
-        return $result;
+        return $this->maxBeliefGejala($result);
+        // return $result;
 
     }
 

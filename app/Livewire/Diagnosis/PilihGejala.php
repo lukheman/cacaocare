@@ -4,8 +4,9 @@ namespace App\Livewire\Diagnosis;
 
 use App\Helpers\DempsterShafer;
 use App\Models\Gejala;
-use App\Models\LogDiagnosis;
+use App\Models\GejalaRiwayatKonsultasi;
 use App\Models\Penyakit;
+use App\Models\RiwayatKonsultasi;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
@@ -59,6 +60,7 @@ class PilihGejala extends Component
             })
             ->sortByDesc('belief')
             ->values();
+        $this->penyakit = $this->penyakit->first();
 
         session(['hasil_diagnosis' => ['penyakit' => $this->penyakit]]);
         $this->simpanHasilDiagnosis();
@@ -66,21 +68,32 @@ class PilihGejala extends Component
 
     }
 
+    private function konversiJenisKelamin($jenis_kelamin) {
+        return $jenis_kelamin === 'Laki-laki' ? 'L' : ($jenis_kelamin === 'Perempuan' ? 'P' : '');
+    }
+
     public function simpanHasilDiagnosis()
     {
         $info_pasien = session('info_pasien', []);
         $nama = $info_pasien['nama'] ?? '';
         $umur = $info_pasien['umur'] ?? '';
+        $jenis_kelamin = $this->konversiJenisKelamin($info_pasien['jenis_kelamin'] ?? '');
+        $alamat = $info_pasien['alamat'] ?? '';
 
-        $log_diagnosis = LogDiagnosis::create([
+        $riwayat_konsultasi = RiwayatKonsultasi::create([
             'nama' => $nama,
             'umur' => $umur,
+            'jenis_kelamin' =>  $jenis_kelamin,
+            'alamat' => $alamat,
+            'id_penyakit' => $this->penyakit->id,
+            'belief' => $this->penyakit->belief,
         ]);
 
-        $log_diagnosis->gejala()->attach($this->id_gejala_terpilih);
-
-        foreach ($this->penyakit as $penyakit) {
-            $log_diagnosis->penyakit()->attach($penyakit->id, ['belief' => $penyakit->belief ]);
+        foreach ($this->id_gejala_terpilih as $id_gejala) {
+            GejalaRiwayatKonsultasi::create([
+                'id_riwayat_konsultasi' => $riwayat_konsultasi->id,
+                'id_gejala' => $id_gejala,
+            ]);
         }
 
     }

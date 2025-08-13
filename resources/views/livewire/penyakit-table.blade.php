@@ -109,7 +109,7 @@ use App\Enums\State;
                     <tr>
                         <th>#</th>
                         <th>Kode Penyakit</th>
-                        <th>Nama</th>
+                        <th>Nama Penyakit</th>
                         <th class="text-end">Aksi</th>
                     </tr>
                 </thead>

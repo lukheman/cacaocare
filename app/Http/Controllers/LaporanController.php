@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\LogDiagnosis;
+use App\Models\RiwayatKonsultasi;
 use App\Models\Penyakit;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class LaporanController extends Controller
 {
@@ -26,11 +27,24 @@ class LaporanController extends Controller
     public function diagnosisPasien(Request $request)
     {
 
-        $log_diagnosis = LogDiagnosis::with(['penyakit', 'gejala'])->get();
+        $log_diagnosis = RiwayatKonsultasi::with(['penyakit'])->get();
 
         return view('laporan.laporan-diagnosis-pasien', [
             'diagnosis' => $log_diagnosis,
         ]);
+
+    }
+
+    public function riwayatKonsultasi(Request $request)
+    {
+
+        $riwayat = RiwayatKonsultasi::with(['penyakit'])->get();
+
+        $pdf = Pdf::loadView('laporan.laporan-riwayat-konsultasi', [
+            'riwayat' => $riwayat,
+        ]);
+
+        return $pdf->download('laporan_riwayat_konsultasi' . date('d_m_Y') . '.pdf');
 
     }
 
@@ -40,7 +54,7 @@ class LaporanController extends Controller
             'id_log_diagnosis' => ['required', 'exists:log_diagnosis,id'],
         ]);
 
-        $diagnosis = LogDiagnosis::with(['penyakit', 'gejala'])->find($validated['id_log_diagnosis']);
+        $diagnosis = RiwayatKonsultasi::with(['penyakit', 'gejala'])->find($validated['id_log_diagnosis']);
 
         return view('laporan.laporan-diagnosis-satu-pasien', [
             'diagnosis' => $diagnosis,
