@@ -9,7 +9,9 @@ use Livewire\Component;
 use Livewire\Attributes\Computed;
 use Livewire\WithPagination;
 use Livewire\Attributes\On;
+use Livewire\Attributes\Title;
 
+#[Title('Riwayat Konsultasi')]
 class RiwayatKonsultasiTable extends Component
 {
     use WithPagination;

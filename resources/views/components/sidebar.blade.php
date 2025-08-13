@@ -56,7 +56,7 @@
     href="{{ route('dashboard') }}"
     :active="request()->routeIs('dashboard')"
 >
-    Beranda
+    Dashbaord
 </x-nav-link>
 
 <x-nav-link
@@ -83,6 +83,7 @@
     Aturan Diagnosa
 </x-nav-link>
 
+                            <li class="sidebar-title">Laporan</li>
 <x-nav-link
     icon="bi-journal-text"
     href="{{ route('riwayat-konsultasi-table') }}"
