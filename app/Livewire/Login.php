@@ -44,7 +44,7 @@ class Login extends Component
         $user = Auth::user();
         $role = Role::from($user->role);
 
-        $redirectUrl = $this->redirect ?? route('penyakit-table');
+        $redirectUrl = $this->redirect ?? route('dashboard');
 
         flash('Login berhasil');
 

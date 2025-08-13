@@ -14,6 +14,8 @@ Route::get('/tentang-kami', Livewire\AboutUs::class)->name('about-us');
 Route::get('/login', Livewire\Login::class)->name('login')->middleware('guest');
 Route::get('/logout', Controllers\LogoutController::class)->name('logout');
 
+Route::get('/konsultasi', Livewire\Diagnosis\Flow::class)->name('konsultasi');
+
 // =======================
 // Authenticated Routes
 // =======================
@@ -38,6 +40,4 @@ Route::middleware('auth')->group(function () {
                 ->name('laporan-riwayat-konsultasi');
         });
 
-    // Diagnosis
-    Route::get('/konsultasi', Livewire\Diagnosis\Flow::class)->name('konsultasi');
 });
