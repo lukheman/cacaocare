@@ -209,7 +209,7 @@
                         <a class="nav-link" href="{{ route('landing')}}">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('landing')}}#penyakit">Penyakit</a>
+                        <a class="nav-link" href="{{ route('daftar-penyakit')}}">Penyakit</a>
                     </li>
 
                     <li class="nav-item">

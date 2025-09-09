@@ -16,6 +16,8 @@ Route::get('/logout', Controllers\LogoutController::class)->name('logout');
 
 Route::get('/konsultasi', Livewire\Diagnosis\Flow::class)->name('konsultasi');
 
+Route::get('/daftar-penyakit', Livewire\DaftarPenyakit::class)->name('daftar-penyakit');
+
 // =======================
 // Authenticated Routes
 // =======================
