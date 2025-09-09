@@ -216,10 +216,6 @@
                         <a class="nav-link" href="{{ route('about-us')}}">Tentang Kami</a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('konsultasi')}}" wire:navigate>Konsultasi</a>
-                    </li>
-
 @auth
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('dashboard')}}">Dashboard</a>

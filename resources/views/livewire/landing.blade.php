@@ -6,7 +6,7 @@
                 <div class="col-lg-6 fade-up">
                     <h1 class="display-4 fw-bold mb-4">Jaga Kesehatan Tanaman Coklat Anda</h1>
                     <p class="lead mb-4">Sistem pakar berbasis AI untuk mendiagnosa penyakit tanaman coklat dengan cepat dan akurat.</p>
-                    <button class="btn btn-primary btn-lg">Mulai Diagnosis</button>
+                    <a href="{{ route('konsultasi')}}" class="btn btn-primary btn-lg">Mulai Diagnosis</a>
                 </div>
                 <div class="col-lg-6 fade-up" style="animation-delay: 0.2s;">
                     <!-- <img src="https://source.unsplash.com/random/600x400/?cacao,plant" alt="Tanaman Coklat" class="img-fluid rounded-custom shadow-custom"> -->
