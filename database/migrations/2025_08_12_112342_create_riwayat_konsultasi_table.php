@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('umur');
             $table->enum('jenis_kelamin', ['P', 'L']);
             $table->string('alamat');
-            $table->date('tanggal_konsultasi')->default(now());
+            $table->date('tanggal_konsultasi');
             $table->foreignId('id_penyakit')->constrained('penyakit')->cascadeOnDelete();
             $table->float('belief');
             $table->timestamps();

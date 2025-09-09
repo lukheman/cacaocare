@@ -34,13 +34,13 @@ class PilihGejala extends Component
         $hasil = null;
 
         foreach ($this->id_gejala_terpilih as $id_gejala) {
-            $penyakit = Penyakit::whereHas('gejala', function ($query) use ($id_gejala) {
+            $penyakit = Penyakit::query()->whereHas('gejala', function ($query) use ($id_gejala) {
                 $query->where('id_gejala', $id_gejala);
             })->get();
 
             $nama_penyakit = $penyakit->pluck('kode')->implode(',');
 
-            $bobot_gejala = Gejala::find($id_gejala)->bobot ?? 0;
+            $bobot_gejala = Gejala::query()->find($id_gejala)->bobot ?? 0;
 
             $ds = new DempsterShafer([[$nama_penyakit => $bobot_gejala]]);
 
@@ -51,7 +51,7 @@ class PilihGejala extends Component
 
         $result = $hasil->sumBeliefByGejala();
         $this->kode_penyakit = array_keys($result);
-        $this->penyakit = Penyakit::whereIn('kode', $this->kode_penyakit)
+        $this->penyakit = Penyakit::query()->whereIn('kode', $this->kode_penyakit)
             ->get()
             ->map(function ($item) use ($result) {
                 $item->belief = round($result[$item->kode] * 100, 2); // tambahkan field belief ke model
@@ -80,17 +80,18 @@ class PilihGejala extends Component
         $jenis_kelamin = $this->konversiJenisKelamin($info_pasien['jenis_kelamin'] ?? '');
         $alamat = $info_pasien['alamat'] ?? '';
 
-        $riwayat_konsultasi = RiwayatKonsultasi::create([
+        $riwayat_konsultasi = RiwayatKonsultasi::query()->create([
             'nama' => $nama,
             'umur' => $umur,
             'jenis_kelamin' =>  $jenis_kelamin,
             'alamat' => $alamat,
             'id_penyakit' => $this->penyakit->id,
             'belief' => $this->penyakit->belief,
+            'tanggal_konsultasi' => now(),
         ]);
 
         foreach ($this->id_gejala_terpilih as $id_gejala) {
-            GejalaRiwayatKonsultasi::create([
+            GejalaRiwayatKonsultasi::query()->create([
                 'id_riwayat_konsultasi' => $riwayat_konsultasi->id,
                 'id_gejala' => $id_gejala,
             ]);
