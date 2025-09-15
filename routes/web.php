@@ -40,6 +40,9 @@ Route::middleware('auth')->group(function () {
         ->group(function () {
             Route::get('/riwayat-konsultasi', 'riwayatKonsultasi')
                 ->name('laporan-riwayat-konsultasi');
+
+            Route::get('/riwayat-konsultasi/{id}', 'riwayatKonsultasiSatu')
+                ->name('laporan-riwayat-konsultasi-satu');
         });
 
 });

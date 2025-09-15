@@ -141,6 +141,7 @@
                         <td>{{ $item->alamat }}</td>
                         <td>{{ $item->tanggal_konsultasi}}</td>
                         <td class="text-end">
+                            <a href="{{ route('laporan-riwayat-konsultasi-satu', ['id' => $item->id])}}"  class="btn btn-sm btn-danger" type="button">Download</a>
                             <button wire:click="detail({{ $item->id }})" class="btn btn-sm btn-primary" type="button">Lihat Hasil Diagnosis</button>
                             <button wire:click="delete({{ $item->id }})" class="btn btn-sm btn-danger" type="button">Hapus</button>
                         </td>

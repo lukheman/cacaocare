@@ -48,17 +48,19 @@ class LaporanController extends Controller
 
     }
 
-    public function diagnosisSatuPasien(Request $request)
+    public function riwayatKonsultasiSatu($id)
     {
-        $validated = $request->validate([
-            'id_log_diagnosis' => ['required', 'exists:log_diagnosis,id'],
+
+        $riwayat = RiwayatKonsultasi::with(['penyakit', ])->find($id);
+
+        $pdf = Pdf::loadView('laporan.laporan-riwayat-konsultasi-satu', [
+            'riwayat' => $riwayat,
         ]);
 
-        $diagnosis = RiwayatKonsultasi::with(['penyakit', 'gejala'])->find($validated['id_log_diagnosis']);
-
-        return view('laporan.laporan-diagnosis-satu-pasien', [
-            'diagnosis' => $diagnosis,
-        ]);
+        // return view('laporan.laporan-riwayat-konsultasi-satu', [
+        //     'riwayat' => $riwayat,
+        // ]);
+        return $pdf->download('laporan_riwayat_konsultasi' . date('d_m_Y') . '.pdf');
 
     }
 }
