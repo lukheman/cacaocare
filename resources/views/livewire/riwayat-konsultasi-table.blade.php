@@ -1,3 +1,24 @@
+@push('styles')
+
+<style>
+    .info-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    .info-table td:first-child {
+        width: 150px;        /* atur sesuai kebutuhan */
+        font-weight: 600;
+        vertical-align: top;
+    }
+    .colon {
+        display: inline-block;
+        width: 15px;         /* supaya semua titik dua rata */
+        text-align: center;
+    }
+</style>
+
+
+@endpush
 <div class="card">
 
     <!-- Modal Form -->
@@ -23,15 +44,27 @@
 
 
                     <!-- Data Konsultan -->
-                    <div class="mb-4">
-                        <h5 class="fw-semibold text-primary border-bottom pb-2">Data Konsultan</h5>
-                        <ul class="list-unstyled mt-3 mb-0">
-                            <li><b>Nama:</b> {{ $riwayatKonsultasi->nama ?? '' }}</li>
-                            <li><b>Umur:</b> {{ $riwayatKonsultasi->umur ?? '' }} tahun</li>
-                            <li><b>Jenis Kelamin:</b> {{ $riwayatKonsultasi->jenis_kelamin ?? '' }}</li>
-                            <li><b>Alamat:</b> {{ $riwayatKonsultasi->alamat ?? '' }}</li>
-                        </ul>
-                    </div>
+<div class="mb-4">
+    <h6 class="fw-semibold text-primary border-bottom pb-2">Data Konsultan</h6>
+    <table class="info-table mt-3">
+        <tr>
+            <td>Nama</td>
+            <td><span class="colon">:</span> {{ $riwayatKonsultasi->nama ?? '' }}</td>
+        </tr>
+        <tr>
+            <td>Umur</td>
+            <td><span class="colon">:</span> {{ $riwayatKonsultasi->umur ?? '' }} tahun</td>
+        </tr>
+        <tr>
+            <td>Jenis Kelamin</td>
+            <td><span class="colon">:</span> {{ $riwayatKonsultasi->jenis_kelamin ?? '' }}</td>
+        </tr>
+        <tr>
+            <td>Alamat</td>
+            <td><span class="colon">:</span> {{ $riwayatKonsultasi->alamat ?? '' }}</td>
+        </tr>
+    </table>
+</div>
 
                     <!-- Hasil -->
                     <div class="p-3 bg-light rounded-3 border mb-4">
