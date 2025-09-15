@@ -22,7 +22,6 @@ class DaftarPenyakit extends Component
             ->when($this->search, fn($query) =>
                 $query->where('nama', 'like', "%{$this->search}%")
             )
-            ->latest()
             ->paginate(6);
     }
 

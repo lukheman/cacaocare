@@ -66,7 +66,6 @@ class RuleTable extends Component
                 $query->where('nama', 'like', '%'.$this->search.'%')
                 ->orWhere('kode', 'like', '%'.$this->search.'%');
             })
-            ->latest()
             ->paginate(10);
     }
 
