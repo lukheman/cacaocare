@@ -24,6 +24,9 @@ class ProfileForm extends Form
     #[Rule('nullable')]
     public string $password_confirmation = '';
 
+    #[Rule('nullable', 'image')]
+    public $photo;
+
     public function update()
     {
 
@@ -56,6 +59,16 @@ class ProfileForm extends Form
         // Only hash and update password if it's provided
         if (! empty($this->password)) {
             $updates['password'] = Hash::make($this->password);
+        }
+
+        if ($this->photo) {
+            // Delete old photo if exists
+            if ($user->photo) {
+                Storage::disk('public')->delete($user->photo);
+            }
+            // Store new photo
+            $path = $this->photo->store('photos', 'public');
+            $updates['photo'] = $path;
         }
 
         // Only perform update if there are changes

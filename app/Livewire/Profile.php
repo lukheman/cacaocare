@@ -5,11 +5,15 @@ namespace App\Livewire;
 use App\Livewire\Forms\ProfileForm;
 use Livewire\Attributes\Title;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 #[Title('Profil')]
 class Profile extends Component
 {
+    use WithFileUploads;
+
     public ProfileForm $form;
+    public $user;
 
     public function edit()
     {
@@ -24,6 +28,7 @@ class Profile extends Component
     {
 
         $user = auth()->user();
+        $this->user = $user;
 
         $this->form->name = $user->name;
         $this->form->email = $user->email;

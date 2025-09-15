@@ -4,15 +4,22 @@
             <div class="card-body">
                 <div class="d-flex justify-content-center align-items-center flex-column">
                     <div class="avatar avatar-2xl">
-                        <img src="./assets/compiled/jpg/2.jpg" alt="Avatar">
+                        <img src="{{ $user->photo ? asset('storage/' . $user->photo) : asset('assets/compiled/jpg/2.jpg') }}" alt="">
                     </div>
-
-                    <h3 class="mt-3">John Doe</h3>
-                    <p class="text-small">Junior Software Engineer</p>
+                    <div class="mt-2">
+                        <label for="profile-photo" class="btn btn-outline-primary btn-sm" style="cursor: pointer;">
+                            <i class="bi bi-camera"></i> Ganti Foto
+                        </label>
+                        <input wire:model="form.photo" type="file" id="profile-photo" class="d-none" accept="image/*">
+                    </div>
+                    <h3 class="mt-3">{{ $user->name }}</h3>
+                    <p class="text-small">{{ class_basename($user) }}</p>
+                    {{-- kalau multi table auth, ini akan menampilkan tipe user berdasarkan model --}}
                 </div>
             </div>
         </div>
     </div>
+
     <div class="col-12 col-lg-8">
         <div class="card">
             <div class="card-body">
